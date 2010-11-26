@@ -1,0 +1,16 @@
+defaults: &defaults
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *defaults
+  database: obdb_development
+
+test:
+  <<: *defaults
+  database: obdb_test
+
+production:
+  <<: *defaults
+  database: obdb_production
