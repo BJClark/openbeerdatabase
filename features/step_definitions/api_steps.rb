@@ -1,11 +1,11 @@
 # General
 
-When /^I send a GET request to (.*)$/ do |path|
-  get path
+When /^I send an API GET request to (.*)$/ do |path|
+  get "http://api.openbeerdatabase.local#{path}"
 end
 
-When /^I send the following JSON via POST to (.*)$/ do |path, body|
-  post path, body, { 'CONTENT_TYPE' => 'application/json' }
+When /^I send an API POST request to (.*)$/ do |path, body|
+  post "http://api.openbeerdatabase.local#{path}", body, { 'CONTENT_TYPE' => 'application/json' }
 end
 
 Then /^I should receive a (\d+) response$/ do |status|
@@ -23,6 +23,6 @@ end
 
 When /^I create the following beers? via the API using the "([^"]*)" token:$/ do |token, table|
   table.hashes.each do |hash|
-    When %{I send the following JSON via POST to /api/v1/beers.json?token=#{token}}, { :beer => hash }.to_json
+    When %{I send an API POST request to /v1/beers.json?token=#{token}}, { :beer => hash }.to_json
   end
 end

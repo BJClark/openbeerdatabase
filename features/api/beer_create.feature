@@ -10,7 +10,7 @@ Feature: Create a beer
       | a1b2c3 |
 
   Scenario Outline:
-    When I send the following JSON via POST to /api/v1/beers.json?token=<token>
+    When I send an API POST request to /v1/beers.json?token=<token>
       """
       <body>
       """

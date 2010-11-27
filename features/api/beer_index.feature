@@ -10,7 +10,7 @@ Feature: List beers
       | 1  |               | Pumpking           |
       | 2  |               | Strawberry Harvest |
       | 3  | token: a1b2c3 | Pliney the Elder   |
-    When I send a GET request to /api/v1/beers
+    When I send an API GET request to /v1/beers
     Then I should receive a 200 response
     And I should see the following JSON response
       """
@@ -28,7 +28,7 @@ Feature: List beers
       | 1  |               | Pumpking           |
       | 2  | token: a1b2c3 | Pliney the Elder   |
       | 3  |               | Strawberry Harvest |
-    When I send a GET request to /api/v1/beers?page=2&per_page=1
+    When I send an API GET request to /v1/beers?page=2&per_page=1
     Then I should receive a 200 response
     And I should see the following JSON response
       """
@@ -45,7 +45,7 @@ Feature: List beers
       | 1  |               | Pumpking           |
       | 2  |               | Strawberry Harvest |
       | 3  | token: a1b2c3 | Pliney the Elder   |
-    When I send a GET request to /api/v1/beers?token=a1b2c3
+    When I send an API GET request to /v1/beers?token=a1b2c3
     Then I should receive a 200 response
     And I should see the following JSON response
       """
