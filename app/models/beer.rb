@@ -12,8 +12,13 @@ class Beer < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    { :id   => id,
-      :name => name }
+    { :id     => id,
+      :name   => name,
+      :brewer => {
+        :id   => brewer.id,
+        :name => brewer.name
+      }
+    }
   end
 
   class << self
