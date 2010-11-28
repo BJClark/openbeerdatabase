@@ -8,6 +8,10 @@ When /^I send an API POST request to (.*)$/ do |path, body|
   post "http://api.openbeerdatabase.local#{path}", body, { 'CONTENT_TYPE' => 'application/json' }
 end
 
+When /^I send an API DELETE request to (.*)$/ do |path|
+  delete "http://api.openbeerdatabase.local#{path}"
+end
+
 Then /^I should receive a (\d+) response$/ do |status|
   response.status.should == status
 end
