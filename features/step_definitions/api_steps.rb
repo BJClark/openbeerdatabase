@@ -33,3 +33,12 @@ When /^I create the following beers? via the API using the "([^"]*)" token:$/ do
     When %{I send an API POST request to /v1/beers.json?token=#{token}}, { :beer => hash }.to_json
   end
 end
+
+
+# Brewer
+
+When /^I create the following brewers? via the API using the "([^"]*)" token:$/ do |token, table|
+  table.hashes.each do |hash|
+    When %{I send an API POST request to /v1/brewers.json?token=#{token}}, { :brewer => hash }.to_json
+  end
+end

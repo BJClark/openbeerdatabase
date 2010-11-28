@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101126235027) do
+ActiveRecord::Schema.define(:version => 20101128063443) do
 
   create_table "beers", :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(:version => 20101126235027) do
   end
 
   add_index "beers", ["user_id"], :name => "index_beers_on_user_id"
+
+  create_table "brewers", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brewers", ["user_id"], :name => "index_brewers_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "token",      :limit => 64, :null => false
