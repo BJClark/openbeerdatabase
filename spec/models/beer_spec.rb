@@ -54,7 +54,7 @@ end
 describe Beer, '#as_json' do
   subject { Factory(:beer) }
 
-  it 'returns the id and name attributes of the beer as JSON' do
+  it 'returns the id and name attributes along with brewer information as JSON' do
     subject.as_json.should == {
       :id     => subject.id,
       :name   => subject.name,
