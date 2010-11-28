@@ -2,7 +2,7 @@ class Api::V1::BeersController < Api::V1::BaseController
   before_filter :authenticate, :only => [:create]
 
   def index
-    beers = Beer.search(params)
+    beers = Beer.paginate(params)
 
     render :json => {
       :page  => beers.current_page,
