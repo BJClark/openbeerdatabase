@@ -22,32 +22,36 @@ describe Beer, '.paginate' do
     Beer.paginate
     Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                               :per_page   => 50,
-                                                              :conditions => 'user_id IS NULL',
-                                                              :order      => 'id ASC')
+                                                              :conditions => 'beers.user_id IS NULL',
+                                                              :order      => 'id ASC',
+                                                              :include    => :brewer)
   end
 
   it 'allows overriding of pagination parameters' do
     Beer.paginate(:page => 2, :per_page => 10)
     Beer.should have_received(:paginate_without_options).with(:page       => 2,
                                                               :per_page   => 10,
-                                                              :conditions => 'user_id IS NULL',
-                                                              :order      => 'id ASC')
+                                                              :conditions => 'beers.user_id IS NULL',
+                                                              :order      => 'id ASC',
+                                                              :include    => :brewer)
   end
 
   it 'includes user specific records when provided with a token' do
     Beer.paginate(:token => user.token)
     Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                               :per_page   => 50,
-                                                              :conditions => ['user_id IS NULL OR user_id = ?', user.id],
-                                                              :order      => 'id ASC')
+                                                              :conditions => ['beers.user_id IS NULL OR beers.user_id = ?', user.id],
+                                                              :order      => 'id ASC',
+                                                              :include    => :brewer)
   end
 
   it 'does not allow overriding order' do
     Beer.paginate(:order => 'name DESC')
     Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                               :per_page   => 50,
-                                                              :conditions => 'user_id IS NULL',
-                                                              :order      => 'id ASC')
+                                                              :conditions => 'beers.user_id IS NULL',
+                                                              :order      => 'id ASC',
+                                                              :include    => :brewer)
   end
 end
 

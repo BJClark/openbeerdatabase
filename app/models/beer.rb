@@ -31,9 +31,9 @@ class Beer < ActiveRecord::Base
     user = User.find_by_token(options[:token]) if options[:token].present?
 
     if user.present?
-      ['user_id IS NULL OR user_id = ?', user.id]
+      ['beers.user_id IS NULL OR beers.user_id = ?', user.id]
     else
-      'user_id IS NULL'
+      'beers.user_id IS NULL'
     end
   end
 
@@ -41,7 +41,8 @@ class Beer < ActiveRecord::Base
     { :page       => options[:page]     || 1,
       :per_page   => options[:per_page] || 50,
       :conditions => conditions_for_pagination(options),
-      :order      => 'id ASC'
+      :order      => 'id ASC',
+      :include    => :brewer
     }
   end
 end
