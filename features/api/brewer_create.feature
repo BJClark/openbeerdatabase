@@ -8,22 +8,24 @@ Feature: Create a brewer
     Given a user exists with a token of "a1b2c3"
 
   Scenario Outline:
-    When I send an API POST request to /v1/brewers.json?token=<token>
+    When I send an API POST request to /v1/brewers.<format>?token=<token>
       """
       <body>
       """
     Then I should receive a <status> response
 
   Examples:
-    | body                                | token  | status |
-    | { "brewer" : { "name" : "Abita" } } | a1b2c3 | 201    |
-    | { "brewer" : {} }                   | a1b2c3 | 400    |
-    | {}                                  | a1b2c3 | 400    |
-    |                                     | a1b2c3 | 400    |
-    | { "brewer" : { "name" : "Abita" } } |        | 401    |
-    | { "brewer" : {} }                   |        | 401    |
-    | {}                                  |        | 401    |
-    |                                     |        | 401    |
+    | body                                | token  | status | format |
+    | { "brewer" : { "name" : "Abita" } } | a1b2c3 | 201    | json   |
+    | { "brewer" : {} }                   | a1b2c3 | 400    | json   |
+    | {}                                  | a1b2c3 | 400    | json   |
+    |                                     | a1b2c3 | 400    | json   |
+    | { "brewer" : { "name" : "Abita" } } | a1b2c3 | 406    | xml    |
+    | { "brewer" : { "name" : "Abita" } } |        | 401    | json   |
+    | { "brewer" : {} }                   |        | 401    | json   |
+    | {}                                  |        | 401    | json   |
+    |                                     |        | 401    | json   |
+    | { "brewer" : { "name" : "Abita" } } |        | 401    | xml    |
 
   Scenario: Creating a brewer successfully
     When I create the following brewer via the API using the "a1b2c3" token:

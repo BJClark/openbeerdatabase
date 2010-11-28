@@ -1,4 +1,7 @@
 class Api::V1::BaseController < ApplicationController
+  before_filter :authenticate, :only => [:create]
+  before_filter :validate_format
+
   protected
 
   def authenticate
@@ -9,4 +12,8 @@ class Api::V1::BaseController < ApplicationController
     User.find_by_token(params[:token]) if params[:token].present?
   end
   memoize :current_user
+
+  def validate_format
+    head(:not_acceptable) unless request.format.json?
+  end
 end

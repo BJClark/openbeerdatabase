@@ -12,7 +12,7 @@ Feature: List brewers
       | 3  |               | Russian River |
 
   Scenario: Listing brewers, with all the default options
-    When I send an API GET request to /v1/brewers
+    When I send an API GET request to /v1/brewers.json
     Then I should receive a 200 response
     And I should see the following JSON response
       """
@@ -29,7 +29,7 @@ Feature: List brewers
       """
 
   Scenario: Listing brewers, with pagination
-    When I send an API GET request to /v1/brewers?page=2&per_page=1
+    When I send an API GET request to /v1/brewers.json?page=2&per_page=1
     Then I should receive a 200 response
     And I should see the following JSON response
       """
@@ -43,7 +43,7 @@ Feature: List brewers
       """
 
   Scenario: Listing brewers, with entries from an API client
-    When I send an API GET request to /v1/brewers?token=a1b2c3
+    When I send an API GET request to /v1/brewers.json?token=a1b2c3
     Then I should receive a 200 response
     And I should see the following JSON response
       """

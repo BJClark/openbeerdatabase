@@ -1,6 +1,4 @@
 class Api::V1::BrewersController < Api::V1::BaseController
-  before_filter :authenticate, :only => [:create]
-
   def index
     brewers = Brewer.paginate(params)
 

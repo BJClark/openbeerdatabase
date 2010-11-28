@@ -17,7 +17,7 @@ Feature: List beers
       | 3  |               | name: Abita         | Strawberry Harvest |
 
   Scenario: Listing beers, with all the default options
-    When I send an API GET request to /v1/beers
+    When I send an API GET request to /v1/beers.json
     Then I should receive a 200 response
     And I should see the following JSON response
       """
@@ -42,7 +42,7 @@ Feature: List beers
       """
 
   Scenario: Listing beers, with pagination
-    When I send an API GET request to /v1/beers?page=2&per_page=1
+    When I send an API GET request to /v1/beers.json?page=2&per_page=1
     Then I should receive a 200 response
     And I should see the following JSON response
       """
@@ -60,7 +60,7 @@ Feature: List beers
       """
 
   Scenario: Listing beers, with entries from an API client
-    When I send an API GET request to /v1/beers?token=a1b2c3
+    When I send an API GET request to /v1/beers.json?token=a1b2c3
     Then I should receive a 200 response
     And I should see the following JSON response
       """
