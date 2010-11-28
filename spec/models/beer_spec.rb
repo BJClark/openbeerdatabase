@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe Beer do
+  it { should belong_to(:brewer) }
   it { should belong_to(:user) }
 
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_most(255) }
   it { should allow_mass_assignment_of(:name) }
+
+  it { should validate_presence_of(:brewer_id) }
 end
 
 describe Beer, '.paginate' do

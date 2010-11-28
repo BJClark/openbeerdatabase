@@ -1,7 +1,9 @@
 class Beer < ActiveRecord::Base
+  belongs_to :brewer
   belongs_to :user
 
-  validates :name, :presence => true, :length => { :maximum => 255 }
+  validates :name,      :presence => true, :length => { :maximum => 255 }
+  validates :brewer_id, :presence => true
 
   attr_accessible :name
 

@@ -1,4 +1,5 @@
 Factory.define :beer do |beer|
+  beer.association(:brewer)
   beer.association(:user)
   beer.name { 'Strawberry Harvest' }
 end
