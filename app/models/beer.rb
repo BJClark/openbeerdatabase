@@ -11,16 +11,6 @@ class Beer < ActiveRecord::Base
     paginate_without_options(options_for_pagination(options))
   end
 
-  def as_json(options = {})
-    { :id     => id,
-      :name   => name,
-      :brewer => {
-        :id   => brewer.id,
-        :name => brewer.name
-      }
-    }
-  end
-
   class << self
     alias_method_chain :paginate, :options
   end

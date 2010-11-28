@@ -47,14 +47,3 @@ describe Brewer, '.paginate' do
                                                                 :order      => 'id ASC')
   end
 end
-
-describe Brewer, '#as_json' do
-  subject { Factory(:brewer) }
-
-  it 'returns the id and name attributes of the beer as JSON' do
-    subject.as_json.should == {
-      :id   => subject.id,
-      :name => subject.name
-    }
-  end
-end

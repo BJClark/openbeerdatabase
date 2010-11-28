@@ -22,6 +22,8 @@ Feature: List beers
     And I should see the following JSON response
       """
         { "page"  : 1,
+          "pages" : 1,
+          "total" : 2,
           "beers" : [
             { "id"     : 1,
               "name"   : "Pumpking",
@@ -47,6 +49,8 @@ Feature: List beers
     And I should see the following JSON response
       """
         { "page"  : 2,
+          "pages" : 2,
+          "total" : 2,
           "beers" : [
             { "id"     : 3,
               "name"   : "Strawberry Harvest",
@@ -65,6 +69,8 @@ Feature: List beers
     And I should see the following JSON response
       """
         { "page"  : 1,
+          "pages" : 1,
+          "total" : 3,
           "beers" : [
             { "id"     : 1,
               "name"   : "Pumpking",

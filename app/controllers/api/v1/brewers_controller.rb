@@ -1,11 +1,6 @@
 class Api::V1::BrewersController < Api::V1::BaseController
   def index
-    brewers = Brewer.paginate(params)
-
-    render :json => {
-      :page    => brewers.current_page,
-      :brewers => brewers
-    }
+    @brewers = Brewer.paginate(params)
   end
 
   def create

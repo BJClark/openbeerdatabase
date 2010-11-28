@@ -17,6 +17,8 @@ Feature: List brewers
     And I should see the following JSON response
       """
         { "page"    : 1,
+          "pages"   : 1,
+          "total"   : 2,
           "brewers" : [
             { "id"   : 1,
               "name" : "Southern Tier"
@@ -34,6 +36,8 @@ Feature: List brewers
     And I should see the following JSON response
       """
         { "page"    : 2,
+          "pages"   : 2,
+          "total"   : 2,
           "brewers" : [
             { "id"   : 3,
               "name" : "Russian River"
@@ -48,6 +52,8 @@ Feature: List brewers
     And I should see the following JSON response
       """
         { "page"    : 1,
+          "pages"   : 1,
+          "total"   : 3,
           "brewers" : [
             { "id"     : 1,
               "name"   : "Southern Tier"

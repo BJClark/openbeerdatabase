@@ -1,11 +1,6 @@
 class Api::V1::BeersController < Api::V1::BaseController
   def index
-    beers = Beer.paginate(params)
-
-    render :json => {
-      :page  => beers.current_page,
-      :beers => beers
-    }
+    @beers = Beer.paginate(params)
   end
 
   def create

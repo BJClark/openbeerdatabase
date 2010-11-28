@@ -1,0 +1,15 @@
+<%==
+  { :page  => @beers.current_page,
+    :pages => @beers.total_pages,
+    :total => @beers.total_entries,
+    :beers => @beers.collect { |beer|
+      { :id     => beer.id,
+        :name   => beer.name,
+        :brewer => {
+          :id   => beer.brewer.id,
+          :name => beer.brewer.name
+        }
+      }
+    }
+  }.to_json
+%>
