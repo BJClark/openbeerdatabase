@@ -5,9 +5,7 @@ Feature: Create a beer
   I want to be able to create beers via the API
 
   Background:
-    Given the following user exists:
-      | token  |
-      | a1b2c3 |
+    Given a user exists with a token of "a1b2c3"
 
   Scenario Outline:
     When I send an API POST request to /v1/beers.json?token=<token>
