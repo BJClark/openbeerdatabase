@@ -1,4 +1,4 @@
-# General
+# Request
 
 When /^I send an API GET request to (.*)$/ do |path|
   get "http://api.openbeerdatabase.local#{path}"
@@ -11,6 +11,9 @@ end
 When /^I send an API DELETE request to (.*)$/ do |path|
   delete "http://api.openbeerdatabase.local#{path}"
 end
+
+
+# Response
 
 Then /^I should receive a (\d+) response$/ do |status|
   response.status.should == status
