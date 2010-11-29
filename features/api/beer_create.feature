@@ -7,11 +7,11 @@ Feature: Create a beer
   Background:
     Given a user exists with a token of "a1b2c3"
     And the following brewer exists:
-      | id | name  |
-      | 1  | Abita |
+      | id | user          | name  |
+      | 2  | token: a1b2c3 | Abita |
 
   Scenario Outline:
-    When I send an API POST request to /v1/beers.<format>?token=<token>
+    When I send an API POST request to /v1/brewers/2/beers.<format>?token=<token>
       """
       <body>
       """
@@ -29,16 +29,17 @@ Feature: Create a beer
     | { "beer" : {} } |        | 401    | xml    |
 
   Scenario: Creating a beer successfully
-    When I create the following beer via the API using the "a1b2c3" token:
-      | brewer_id | name     | description | abv |
-      | 1         | Pumpking | Seasonal.   | 8.8 |
+    When I create the following beer via the API for the "Abita" brewery using the "a1b2c3" token:
+      | name     | description | abv |
+      | Pumpking | Seasonal.   | 8.8 |
     Then I should receive a 201 response
     And the following beer should exist:
       | user          | brewer      | name     | description | abv |
       | token: a1b2c3 | name: Abita | Pumpking | Seasonal.   | 8.8 |
 
   Scenario: Creating a beer unsuccessfully
-    When I create the following beer via the API using the "a1b2c3" token:
+    When I create the following beer via the API for the "Abita" brewery using the "a1b2c3" token:
       | name |
       |      |
-    Then the "a1b2c3" API user should have 0 beers
+    Then I should receive a 400 response
+    And the "a1b2c3" API user should have 0 beers

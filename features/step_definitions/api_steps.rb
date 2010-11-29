@@ -28,9 +28,11 @@ end
 
 # Beer
 
-When /^I create the following beers? via the API using the "([^"]*)" token:$/ do |token, table|
+When /^I create the following beer via the API for the "([^"]*)" brewery using the "([^"]*)" token:$/ do |brewer_name, token, table|
+  brewer = Brewer.find_by_name!(brewer_name)
+
   table.hashes.each do |hash|
-    When %{I send an API POST request to /v1/beers.json?token=#{token}}, { :beer => hash }.to_json
+    When %{I send an API POST request to /v1/brewers/#{brewer.id}/beers.json?token=#{token}}, { :beer => hash }.to_json
   end
 end
 

@@ -6,7 +6,7 @@ class Api::V1::BeersController < Api::V1::BaseController
   def create
     beer = Beer.new(params[:beer])
     beer.user   = current_user
-    beer.brewer = Brewer.find_by_id(params[:beer][:brewer_id]) if params[:beer].present?
+    beer.brewer = Brewer.find_by_id(params[:brewer_id])
 
     if beer.save
       head :created
