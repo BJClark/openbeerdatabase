@@ -18,25 +18,24 @@ Feature: Create a beer
     Then I should receive a <status> response
 
   Examples:
-    | body                                                  | token  | status | format |
-    | { "beer" : { "brewer_id" : 1, "name" : "Pumpking" } } | a1b2c3 | 201    | json   |
-    | { "beer" : {} }                                       | a1b2c3 | 400    | json   |
-    | {}                                                    | a1b2c3 | 400    | json   |
-    |                                                       | a1b2c3 | 400    | json   |
-    | { "beer" : { "brewer_id" : 1, "name" : "Pumpking" } } | a1b2c3 | 406    | xml    |
-    | { "beer" : { "brewer_id" : 1, "name" : "Pumpking" } } |        | 401    | json   |
-    | { "beer" : {} }                                       |        | 401    | json   |
-    | {}                                                    |        | 401    | json   |
-    |                                                       |        | 401    | json   |
-    | { "beer" : { "brewer_id" : 1, "name" : "Pumpking" } } |        | 401    | xml    |
+    | body            | token  | status | format |
+    | { "beer" : {} } | a1b2c3 | 400    | json   |
+    | {}              | a1b2c3 | 400    | json   |
+    |                 | a1b2c3 | 400    | json   |
+    | { "beer" : {} } | a1b2c3 | 406    | xml    |
+    | { "beer" : {} } |        | 401    | json   |
+    | {}              |        | 401    | json   |
+    |                 |        | 401    | json   |
+    | { "beer" : {} } |        | 401    | xml    |
 
   Scenario: Creating a beer successfully
     When I create the following beer via the API using the "a1b2c3" token:
-      | brewer_id | name     |
-      | 1         | Pumpking |
-    Then the following beer should exist:
-      | user          | brewer      | name     |
-      | token: a1b2c3 | name: Abita | Pumpking |
+      | brewer_id | name     | description | abv |
+      | 1         | Pumpking | Seasonal.   | 8.8 |
+    Then I should receive a 201 response
+    And the following beer should exist:
+      | user          | brewer      | name     | description | abv |
+      | token: a1b2c3 | name: Abita | Pumpking | Seasonal.   | 8.8 |
 
   Scenario: Creating a beer unsuccessfully
     When I create the following beer via the API using the "a1b2c3" token:

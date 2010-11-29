@@ -10,14 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101128064003) do
+ActiveRecord::Schema.define(:version => 20101129010735) do
 
   create_table "beers", :force => true do |t|
     t.integer  "user_id"
-    t.string   "name",       :null => false
+    t.string   "name",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "brewer_id",  :null => false
+    t.integer  "brewer_id",   :null => false
+    t.float    "abv",         :null => false
+    t.text     "description", :null => false
   end
 
   add_index "beers", ["user_id"], :name => "index_beers_on_user_id"

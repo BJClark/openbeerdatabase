@@ -2,10 +2,12 @@ class Beer < ActiveRecord::Base
   belongs_to :brewer
   belongs_to :user
 
-  validates :name,      :presence => true, :length => { :maximum => 255 }
-  validates :brewer_id, :presence => true
+  validates :brewer_id,   :presence => true
+  validates :name,        :presence => true, :length => { :maximum => 255 }
+  validates :description, :presence => true, :length => { :maximum => 4096 }
+  validates :abv,         :presence => true, :numericality => true
 
-  attr_accessible :name
+  attr_accessible :name, :description, :abv
 
   def self.paginate_with_options(options = {})
     paginate_without_options(options_for_pagination(options))

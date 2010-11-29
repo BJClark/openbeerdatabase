@@ -11,10 +11,10 @@ Feature: List beers
       | 2  | Abita         |
       | 3  | Russian River |
     And the following beers exist:
-      | id | user          | brewer              | name               |
-      | 1  |               | name: Southern Tier | Pumpking           |
-      | 2  | token: a1b2c3 | name: Russian River | Pliney the Elder   |
-      | 3  |               | name: Abita         | Strawberry Harvest |
+      | id | user          | brewer              | name               | description | abv |
+      | 1  |               | name: Southern Tier | Pumpking           | Seasonal.   | 8.8 |
+      | 2  | token: a1b2c3 | name: Russian River | Pliney the Elder   | Rare.       | 8.0 |
+      | 3  |               | name: Abita         | Strawberry Harvest | Southern.   | 4.2 |
 
   Scenario: Listing beers, with all the default options
     When I send an API GET request to /v1/beers.json
@@ -25,16 +25,20 @@ Feature: List beers
           "pages" : 1,
           "total" : 2,
           "beers" : [
-            { "id"     : 1,
-              "name"   : "Pumpking",
-              "brewer" : {
+            { "id"          : 1,
+              "name"        : "Pumpking",
+              "description" : "Seasonal.",
+              "abv"         : 8.8,
+              "brewer"      : {
                 "id"   : 1,
                 "name" : "Southern Tier"
               }
             },
-            { "id"     : 3,
-              "name"   : "Strawberry Harvest",
-              "brewer" : {
+            { "id"          : 3,
+              "name"        : "Strawberry Harvest",
+              "description" : "Southern.",
+              "abv"         : 4.2,
+              "brewer"      : {
                 "id"   : 2,
                 "name" : "Abita"
               }
@@ -52,9 +56,11 @@ Feature: List beers
           "pages" : 2,
           "total" : 2,
           "beers" : [
-            { "id"     : 3,
-              "name"   : "Strawberry Harvest",
-              "brewer" : {
+            { "id"          : 3,
+              "name"        : "Strawberry Harvest",
+              "description" : "Southern.",
+              "abv"         : 4.2,
+              "brewer"      : {
                 "id"   : 2,
                 "name" : "Abita"
               }
@@ -72,23 +78,29 @@ Feature: List beers
           "pages" : 1,
           "total" : 3,
           "beers" : [
-            { "id"     : 1,
-              "name"   : "Pumpking",
-              "brewer" : {
+            { "id"          : 1,
+              "name"        : "Pumpking",
+              "description" : "Seasonal.",
+              "abv"         : 8.8,
+              "brewer"      : {
                 "id"   : 1,
                 "name" : "Southern Tier"
               }
             },
-            { "id"     : 2,
-              "name"   : "Pliney the Elder",
-              "brewer" : {
+            { "id"          : 2,
+              "name"        : "Pliney the Elder",
+              "description" : "Rare.",
+              "abv"         : 8.0,
+              "brewer"      : {
                 "id"   : 3,
                 "name" : "Russian River"
               }
             },
-            { "id"     : 3,
-              "name"   : "Strawberry Harvest",
-              "brewer" : {
+            { "id"          : 3,
+              "name"        : "Strawberry Harvest",
+              "description" : "Southern.",
+              "abv"         : 4.2,
+              "brewer"      : {
                 "id"   : 2,
                 "name" : "Abita"
               }

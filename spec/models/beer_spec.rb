@@ -4,11 +4,20 @@ describe Beer do
   it { should belong_to(:brewer) }
   it { should belong_to(:user) }
 
+  it { should validate_presence_of(:brewer_id) }
+  it { should_not allow_mass_assignment_of(:brewer_id) }
+
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_most(255) }
   it { should allow_mass_assignment_of(:name) }
 
-  it { should validate_presence_of(:brewer_id) }
+  it { should validate_presence_of(:description) }
+  it { should ensure_length_of(:description).is_at_most(4096) }
+  it { should allow_mass_assignment_of(:description) }
+
+  it { should validate_presence_of(:abv) }
+  it { should validate_numericality_of(:abv) }
+  it { should allow_mass_assignment_of(:abv) }
 end
 
 describe Beer, '.paginate' do
