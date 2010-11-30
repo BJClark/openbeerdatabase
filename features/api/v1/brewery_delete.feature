@@ -11,7 +11,7 @@ Feature: Delete a brewery
     Given the following brewery exists:
       | id | user          | name  |
       | 1  | token: a1b2c3 | Abita |
-    When I send an API DELETE request to /v1/breweries/1.json?token=a1b2c3
+    When I send an API DELETE request to /v1/breweries/1?token=a1b2c3
     Then I should receive a 200 response
     And the "a1b2c3" API user should have 0 breweries
 
@@ -19,7 +19,7 @@ Feature: Delete a brewery
     Given the following brewery exists:
       | id | user          | name  |
       | 1  | token: d4e5f6 | Abita |
-    When I send an API DELETE request to /v1/breweries/1.json?token=a1b2c3
+    When I send an API DELETE request to /v1/breweries/1?token=a1b2c3
     Then I should receive a 401 response
     And the "d4e5f6" API user should have 1 breweries
 
@@ -27,7 +27,7 @@ Feature: Delete a brewery
     Given the following brewery exists:
       | id | user | name  |
       | 1  |      | Abita |
-    When I send an API DELETE request to /v1/breweries/1.json?token=a1b2c3
+    When I send an API DELETE request to /v1/breweries/1?token=a1b2c3
     Then I should receive a 401 response
     And the following brewery should exist:
       | id | name  |
@@ -40,7 +40,7 @@ Feature: Delete a brewery
     And the following beer exists:
       | brewery     | user          | name  |
       | name: Abita | token: a1b2c3 | Amber |
-    When I send an API DELETE request to /v1/breweries/1.json?token=a1b2c3
+    When I send an API DELETE request to /v1/breweries/1?token=a1b2c3
     Then I should receive a 400 response
     And the "a1b2c3" API user should have 1 breweries
     And the "a1b2c3" API user should have 1 beers

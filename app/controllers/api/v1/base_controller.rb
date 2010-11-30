@@ -1,6 +1,6 @@
 class Api::V1::BaseController < ApplicationController
-  before_filter :authenticate, :only => [:create]
-  before_filter :validate_format
+  before_filter :authenticate,    :only   => [:create]
+  before_filter :validate_format, :except => [:destroy]
 
   protected
 
