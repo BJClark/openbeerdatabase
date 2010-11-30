@@ -11,10 +11,10 @@ Feature: List beers
       | 2  | Abita         |
       | 3  | Russian River |
     And the following beers exist:
-      | id | user          | brewery             | name               | description | abv |
-      | 1  |               | name: Southern Tier | Pumpking           | Seasonal.   | 8.8 |
-      | 2  | token: a1b2c3 | name: Russian River | Pliney the Elder   | Rare.       | 8.0 |
-      | 3  |               | name: Abita         | Strawberry Harvest | Southern.   | 4.2 |
+      | id | user          | brewery             | name               | description | abv | created_at | updated_at |
+      | 1  |               | name: Southern Tier | Pumpking           | Seasonal.   | 8.8 | 2010-01-01 | 2010-02-02 |
+      | 2  | token: a1b2c3 | name: Russian River | Pliney the Elder   | Rare.       | 8.0 | 2010-03-03 | 2010-04-04 |
+      | 3  |               | name: Abita         | Strawberry Harvest | Southern.   | 4.2 | 2010-05-05 | 2010-06-06 |
 
   Scenario: Listing beers, with all the default options
     When I send an API GET request to /v1/beers.json
@@ -29,6 +29,8 @@ Feature: List beers
               "name"        : "Pumpking",
               "description" : "Seasonal.",
               "abv"         : 8.8,
+              "created_at"  : "2010-01-01T00:00:00Z",
+              "updated_at"  : "2010-02-02T00:00:00Z",
               "brewery"     : {
                 "id"   : 1,
                 "name" : "Southern Tier"
@@ -38,6 +40,8 @@ Feature: List beers
               "name"        : "Strawberry Harvest",
               "description" : "Southern.",
               "abv"         : 4.2,
+              "created_at"  : "2010-05-05T00:00:00Z",
+              "updated_at"  : "2010-06-06T00:00:00Z",
               "brewery"     : {
                 "id"   : 2,
                 "name" : "Abita"
@@ -60,6 +64,8 @@ Feature: List beers
               "name"        : "Strawberry Harvest",
               "description" : "Southern.",
               "abv"         : 4.2,
+              "created_at"  : "2010-05-05T00:00:00Z",
+              "updated_at"  : "2010-06-06T00:00:00Z",
               "brewery"     : {
                 "id"   : 2,
                 "name" : "Abita"
@@ -82,6 +88,8 @@ Feature: List beers
               "name"        : "Pumpking",
               "description" : "Seasonal.",
               "abv"         : 8.8,
+              "created_at"  : "2010-01-01T00:00:00Z",
+              "updated_at"  : "2010-02-02T00:00:00Z",
               "brewery"     : {
                 "id"   : 1,
                 "name" : "Southern Tier"
@@ -91,6 +99,8 @@ Feature: List beers
               "name"        : "Pliney the Elder",
               "description" : "Rare.",
               "abv"         : 8.0,
+              "created_at"  : "2010-03-03T00:00:00Z",
+              "updated_at"  : "2010-04-04T00:00:00Z",
               "brewery"     : {
                 "id"   : 3,
                 "name" : "Russian River"
@@ -100,6 +110,8 @@ Feature: List beers
               "name"        : "Strawberry Harvest",
               "description" : "Southern.",
               "abv"         : 4.2,
+              "created_at"  : "2010-05-05T00:00:00Z",
+              "updated_at"  : "2010-06-06T00:00:00Z",
               "brewery"     : {
                 "id"   : 2,
                 "name" : "Abita"
