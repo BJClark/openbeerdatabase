@@ -6,12 +6,9 @@ Feature: Create a beer
 
   Background:
     Given a user exists with a token of "a1b2c3"
-    And the following brewery exists:
-      | id | user          | name  |
-      | 2  | token: a1b2c3 | Abita |
 
   Scenario Outline:
-    When I send an API POST request to /v1/breweries/2/beers.<format>?token=<token>
+    When I send an API POST request to /v1/beers.<format>?token=<token>
       """
       <body>
       """
@@ -29,20 +26,16 @@ Feature: Create a beer
     | { "beer" : {} } |        | 401    | xml    |
 
   Scenario: Creating a beer successfully
+    Given the following brewery exists:
+      | user          | name  |
+      | token: a1b2c3 | Abita |
     When I create the following beer via the API for the "Abita" brewery using the "a1b2c3" token:
-      | name     | description | abv |
-      | Pumpking | Seasonal.   | 8.8 |
+      | name  | description | abv |
+      | Amber | Common.     | 4.5 |
     Then I should receive a 201 response
     And the following beer should exist:
-      | user          | brewery     | name     | description | abv |
-      | token: a1b2c3 | name: Abita | Pumpking | Seasonal.   | 8.8 |
-
-  Scenario: Creating a beer unsuccessfully
-    When I create the following beer via the API for the "Abita" brewery using the "a1b2c3" token:
-      | name |
-      |      |
-    Then I should receive a 400 response
-    And the "a1b2c3" API user should have 0 beers
+      | user          | brewery     | name  | description | abv |
+      | token: a1b2c3 | name: Abita | Amber | Common.     | 4.5 |
 
   Scenario: Attempting to create a beer with a brewery not owned by the requesting API client
     Given a brewery exists with a name of "Southern Tier"
