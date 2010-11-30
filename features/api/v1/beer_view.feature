@@ -37,6 +37,10 @@ Feature: View a beer
     When I send an API GET request to /v1/beers/1.json?token=d4e5f6
     Then I should receive a 401 response
 
+  Scenario: Viewing a beer, that does not exist
+    When I send an API GET request to /v1/beers/1.json
+    Then I should receive a 404 response
+
   Scenario: Viewing a beer, in an invalid format
     Given the following beer exists:
       | id |
