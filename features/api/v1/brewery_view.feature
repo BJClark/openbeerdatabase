@@ -21,8 +21,8 @@ Feature: View a brewery
 
   Scenario: Viewing a brewery, not owned by the requesting API client
     Given the following brewery exists:
-      | id | user          | name  | created_at | updated_at |
-      | 1  | token: a1b2c3 | Abita | 2010-01-01 | 2010-02-02 |
+      | id | user          |
+      | 1  | token: a1b2c3 |
     When I send an API GET request to /v1/breweries/1.json?token=d4e5f6
     Then I should receive a 401 response
 

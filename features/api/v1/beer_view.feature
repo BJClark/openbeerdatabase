@@ -11,8 +11,8 @@ Feature: View a beer
 
   Scenario: Viewing a beer
     Given the following beer exists:
-      | id | user | brewery             | name               | description | abv | created_at | updated_at |
-      | 1  |      | name: Abita         | Strawberry Harvest | Southern.   | 4.2 | 2010-01-01 | 2010-02-02 |
+      | id | user | brewery     | name               | description | abv | created_at | updated_at |
+      | 1  |      | name: Abita | Strawberry Harvest | Southern.   | 4.2 | 2010-01-01 | 2010-02-02 |
     When I send an API GET request to /v1/beers/1.json
     Then I should receive a 200 response
     And I should see the following JSON response
@@ -32,8 +32,8 @@ Feature: View a beer
 
   Scenario: Viewing a beer, not owned by the requesting API client
     Given the following beer exists:
-      | id | user          | brewery             | name               | description | abv | created_at | updated_at |
-      | 1  | token: a1b2c3 | name: Abita         | Strawberry Harvest | Southern.   | 4.2 | 2010-01-01 | 2010-02-02 |
+      | id | user          |
+      | 1  | token: a1b2c3 |
     When I send an API GET request to /v1/beers/1.json?token=d4e5f6
     Then I should receive a 401 response
 

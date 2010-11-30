@@ -40,7 +40,7 @@ Feature: Create a beer
   Scenario: Creating a beer, with a brewery not owned by the requesting API client
     Given a brewery exists with a name of "Southern Tier"
     When I create the following beer via the API for the "Southern Tier" brewery using the "a1b2c3" token:
-      | name     | description | abv |
-      | Pumpking | Seasonal.   | 8.8 |
+      | name     |
+      | Pumpking |
     Then I should receive a 400 response
     And the "a1b2c3" API user should have 0 beers
