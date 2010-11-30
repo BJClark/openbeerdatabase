@@ -120,3 +120,7 @@ Feature: List beers
           ]
         }
       """
+
+  Scenario: Listing beers, in an invalid format
+    When I send an API GET request to /v1/beers.xml
+    Then I should receive a 406 response

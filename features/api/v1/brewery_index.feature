@@ -79,3 +79,7 @@ Feature: List breweries
           ]
         }
       """
+
+  Scenario: Listing breweries, in an invalid format
+    When I send an API GET request to /v1/breweries.xml
+    Then I should receive a 406 response
