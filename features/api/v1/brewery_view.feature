@@ -28,7 +28,7 @@ Feature: View a brewery
 
   Scenario: Viewing a brewery, in an invalid format
     Given the following brewery exists:
-      | id | name  | created_at | updated_at |
-      | 1  | Abita | 2010-01-01 | 2010-02-02 |
+      | id |
+      | 1  |
     When I send an API GET request to /v1/breweries/1.xml
     Then I should receive a 406 response

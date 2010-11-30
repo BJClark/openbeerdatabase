@@ -39,7 +39,7 @@ Feature: View a beer
 
   Scenario: Viewing a beer, in an invalid format
     Given the following beer exists:
-      | id | user | brewery             | name               | description | abv | created_at | updated_at |
-      | 1  |      | name: Abita         | Strawberry Harvest | Southern.   | 4.2 | 2010-05-05 | 2010-06-06 |
+      | id |
+      | 1  |
     When I send an API GET request to /v1/beers/1.xml
     Then I should receive a 406 response
