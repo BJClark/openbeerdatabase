@@ -4,7 +4,7 @@ describe User do
   subject { Factory(:user) }
 
   it { should have_many(:beers) }
-  it { should have_many(:brewers) }
+  it { should have_many(:breweries) }
 
   it { should validate_presence_of(:token) }
   it { should_not allow_mass_assignment_of(:token) }

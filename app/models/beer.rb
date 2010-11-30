@@ -1,8 +1,8 @@
 class Beer < ActiveRecord::Base
-  belongs_to :brewer
+  belongs_to :brewery
   belongs_to :user
 
-  validates :brewer_id,   :presence => true
+  validates :brewery_id,  :presence => true
   validates :name,        :presence => true, :length => { :maximum => 255 }
   validates :description, :presence => true, :length => { :maximum => 4096 }
   validates :abv,         :presence => true, :numericality => true
@@ -34,7 +34,7 @@ class Beer < ActiveRecord::Base
       :per_page   => options[:per_page] || 50,
       :conditions => conditions_for_pagination(options),
       :order      => 'id ASC',
-      :include    => :brewer
+      :include    => :brewery
     }
   end
 end

@@ -6,12 +6,12 @@ Feature: Create a beer
 
   Background:
     Given a user exists with a token of "a1b2c3"
-    And the following brewer exists:
+    And the following brewery exists:
       | id | user          | name  |
       | 2  | token: a1b2c3 | Abita |
 
   Scenario Outline:
-    When I send an API POST request to /v1/brewers/2/beers.<format>?token=<token>
+    When I send an API POST request to /v1/breweries/2/beers.<format>?token=<token>
       """
       <body>
       """
@@ -34,7 +34,7 @@ Feature: Create a beer
       | Pumpking | Seasonal.   | 8.8 |
     Then I should receive a 201 response
     And the following beer should exist:
-      | user          | brewer      | name     | description | abv |
+      | user          | brewery     | name     | description | abv |
       | token: a1b2c3 | name: Abita | Pumpking | Seasonal.   | 8.8 |
 
   Scenario: Creating a beer unsuccessfully
@@ -44,8 +44,8 @@ Feature: Create a beer
     Then I should receive a 400 response
     And the "a1b2c3" API user should have 0 beers
 
-  Scenario: Attempting to create a beer with a brewer not owned by the requesting API client
-    Given a brewer exists with a name of "Southern Tier"
+  Scenario: Attempting to create a beer with a brewery not owned by the requesting API client
+    Given a brewery exists with a name of "Southern Tier"
     When I create the following beer via the API for the "Southern Tier" brewery using the "a1b2c3" token:
       | name     | description | abv |
       | Pumpking | Seasonal.   | 8.8 |

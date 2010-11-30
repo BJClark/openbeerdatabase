@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :beers
-  has_many :brewers
+  has_many :breweries
 
   validates :token, :presence => true
 

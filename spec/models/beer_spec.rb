@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Beer do
-  it { should belong_to(:brewer) }
+  it { should belong_to(:brewery) }
   it { should belong_to(:user) }
 
-  it { should validate_presence_of(:brewer_id) }
-  it { should_not allow_mass_assignment_of(:brewer_id) }
+  it { should validate_presence_of(:brewery_id) }
+  it { should_not allow_mass_assignment_of(:brewery_id) }
 
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_most(255) }
@@ -33,7 +33,7 @@ describe Beer, '.paginate' do
                                                               :per_page   => 50,
                                                               :conditions => 'beers.user_id IS NULL',
                                                               :order      => 'id ASC',
-                                                              :include    => :brewer)
+                                                              :include    => :brewery)
   end
 
   it 'allows overriding of pagination parameters' do
@@ -42,7 +42,7 @@ describe Beer, '.paginate' do
                                                               :per_page   => 10,
                                                               :conditions => 'beers.user_id IS NULL',
                                                               :order      => 'id ASC',
-                                                              :include    => :brewer)
+                                                              :include    => :brewery)
   end
 
   it 'includes user specific records when provided with a token' do
@@ -51,7 +51,7 @@ describe Beer, '.paginate' do
                                                               :per_page   => 50,
                                                               :conditions => ['beers.user_id IS NULL OR beers.user_id = ?', user.id],
                                                               :order      => 'id ASC',
-                                                              :include    => :brewer)
+                                                              :include    => :brewery)
   end
 
   it 'does not allow overriding order' do
@@ -60,6 +60,6 @@ describe Beer, '.paginate' do
                                                               :per_page   => 50,
                                                               :conditions => 'beers.user_id IS NULL',
                                                               :order      => 'id ASC',
-                                                              :include    => :brewer)
+                                                              :include    => :brewery)
   end
 end

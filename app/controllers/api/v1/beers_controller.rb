@@ -5,8 +5,8 @@ class Api::V1::BeersController < Api::V1::BaseController
 
   def create
     beer = Beer.new(params[:beer])
-    beer.user   = current_user
-    beer.brewer = current_user.brewers.find_by_id(params[:brewer_id])
+    beer.user    = current_user
+    beer.brewery = current_user.breweries.find_by_id(params[:brewery_id])
 
     if beer.save
       head :created

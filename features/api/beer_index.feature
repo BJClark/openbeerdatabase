@@ -5,13 +5,13 @@ Feature: List beers
   I want to be able to list beers
 
   Background:
-    Given the following brewers exist:
+    Given the following breweries exist:
       | id | name          |
       | 1  | Southern Tier |
       | 2  | Abita         |
       | 3  | Russian River |
     And the following beers exist:
-      | id | user          | brewer              | name               | description | abv |
+      | id | user          | brewery             | name               | description | abv |
       | 1  |               | name: Southern Tier | Pumpking           | Seasonal.   | 8.8 |
       | 2  | token: a1b2c3 | name: Russian River | Pliney the Elder   | Rare.       | 8.0 |
       | 3  |               | name: Abita         | Strawberry Harvest | Southern.   | 4.2 |
@@ -29,7 +29,7 @@ Feature: List beers
               "name"        : "Pumpking",
               "description" : "Seasonal.",
               "abv"         : 8.8,
-              "brewer"      : {
+              "brewery"     : {
                 "id"   : 1,
                 "name" : "Southern Tier"
               }
@@ -38,7 +38,7 @@ Feature: List beers
               "name"        : "Strawberry Harvest",
               "description" : "Southern.",
               "abv"         : 4.2,
-              "brewer"      : {
+              "brewery"     : {
                 "id"   : 2,
                 "name" : "Abita"
               }
@@ -60,7 +60,7 @@ Feature: List beers
               "name"        : "Strawberry Harvest",
               "description" : "Southern.",
               "abv"         : 4.2,
-              "brewer"      : {
+              "brewery"     : {
                 "id"   : 2,
                 "name" : "Abita"
               }
@@ -82,7 +82,7 @@ Feature: List beers
               "name"        : "Pumpking",
               "description" : "Seasonal.",
               "abv"         : 8.8,
-              "brewer"      : {
+              "brewery"     : {
                 "id"   : 1,
                 "name" : "Southern Tier"
               }
@@ -91,7 +91,7 @@ Feature: List beers
               "name"        : "Pliney the Elder",
               "description" : "Rare.",
               "abv"         : 8.0,
-              "brewer"      : {
+              "brewery"     : {
                 "id"   : 3,
                 "name" : "Russian River"
               }
@@ -100,7 +100,7 @@ Feature: List beers
               "name"        : "Strawberry Harvest",
               "description" : "Southern.",
               "abv"         : 4.2,
-              "brewer"      : {
+              "brewery"     : {
                 "id"   : 2,
                 "name" : "Abita"
               }

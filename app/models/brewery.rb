@@ -1,4 +1,4 @@
-class Brewer < ActiveRecord::Base
+class Brewery < ActiveRecord::Base
   belongs_to :user
 
   validates :name, :presence => true, :length => { :maximum => 255 }
