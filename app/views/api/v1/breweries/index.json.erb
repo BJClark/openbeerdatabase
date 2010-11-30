@@ -5,6 +5,7 @@
     :breweries => @breweries.collect { |brewery|
       { :id         => brewery.id,
         :name       => brewery.name,
+        :url        => brewery.url,
         :created_at => brewery.created_at,
         :updated_at => brewery.updated_at
       }

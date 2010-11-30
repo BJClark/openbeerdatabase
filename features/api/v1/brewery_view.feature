@@ -6,14 +6,15 @@ Feature: View a brewery
 
   Scenario: Viewing a brewery
     Given the following brewery exists:
-      | id | name  | created_at | updated_at |
-      | 1  | Abita | 2010-01-01 | 2010-02-02 |
+      | id | name  | url              | created_at | updated_at |
+      | 1  | Abita | http://abita.com | 2010-01-01 | 2010-02-02 |
     When I send an API GET request to /v1/breweries/1.json
     Then I should receive a 200 response
     And I should see the following JSON response
       """
         { "id"         : 1,
           "name"       : "Abita",
+          "url"        : "http://abita.com",
           "created_at" : "2010-01-01T00:00:00Z",
           "updated_at" : "2010-02-02T00:00:00Z"
         }

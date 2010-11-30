@@ -7,6 +7,52 @@ describe Brewery do
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_most(255) }
   it { should allow_mass_assignment_of(:name) }
+
+  it { should ensure_length_of(:url).is_at_most(255) }
+end
+
+describe Brewery, 'url' do
+  it 'allows valid URLs' do
+    [ nil,
+      'http://example.com',
+      'http://example.com/',
+      'http://www.example.com/',
+      'http://sub.domain.example.com/',
+      'http://bbc.co.uk',
+      'http://example.com?foo',
+      'http://example.com?url=http://example.com',
+      'http://www.sub.example.com/page.html?foo=bar&baz=%23#anchor',
+      'http://example.com/~user',
+      'http://example.xy',
+      'http://example.museum',
+      'HttP://example.com',
+      'https://example.com',
+      'http://räksmörgås.nu',
+      'http://example.com.',
+      'http://example.com./foo'
+    ].each do |url|
+      Factory.build(:brewery, :url => url).should be_valid
+    end
+  end
+
+  it 'disallows invalid URLs' do
+   [ 1,
+     '',
+     ' ',
+     'url',
+     'www.example.com',
+     'http://ex ample.com',
+     'http://example.com/foo bar',
+     'http://256.0.0.1',
+     'http://u:u:u@example.com',
+     'http://r?ksmorgas.com',
+     'http://example',
+     'http://example.c',
+     'http://example.toolongtld'
+    ].each do |url|
+      Factory.build(:brewery, :url => url).should_not be_valid
+    end
+  end
 end
 
 describe Brewery, '.paginate' do
