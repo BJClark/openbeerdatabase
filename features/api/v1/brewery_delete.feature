@@ -44,3 +44,7 @@ Feature: Delete a brewery
     Then I should receive a 400 response
     And the "a1b2c3" API user should have 1 breweries
     And the "a1b2c3" API user should have 1 beers
+
+  Scenario: Deleting a brewery, that does not exist
+    When I send an API DELETE request to /v1/breweries/1.json
+    Then I should receive a 404 response
