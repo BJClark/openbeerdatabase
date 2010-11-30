@@ -16,7 +16,7 @@ Feature: List beers
       | 2  | token: a1b2c3 | name: Russian River | Pliney the Elder   | Rare.       | 8.0 | 2010-03-03 | 2010-04-04 |
       | 3  |               | name: Abita         | Strawberry Harvest | Southern.   | 4.2 | 2010-05-05 | 2010-06-06 |
 
-  Scenario: Listing beers, with all the default options
+  Scenario: Listing beers
     When I send an API GET request to /v1/beers.json
     Then I should receive a 200 response
     And I should see the following JSON response

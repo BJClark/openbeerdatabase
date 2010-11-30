@@ -27,16 +27,10 @@ Feature: Create a brewery
     |                                      |        | 401    | json   |
     | { "brewery" : { "name" : "Abita" } } |        | 401    | xml    |
 
-  Scenario: Creating a brewery successfully
+  Scenario: Creating a brewery
     When I create the following brewery via the API using the "a1b2c3" token:
       | name     |
       | Pumpking |
     Then the following brewery should exist:
       | user          | name     |
       | token: a1b2c3 | Pumpking |
-
-  Scenario: Creating a brewery unsuccessfully
-    When I create the following brewery via the API using the "a1b2c3" token:
-      | name |
-      |      |
-    Then the "a1b2c3" API user should have 0 breweries

@@ -7,7 +7,7 @@ Feature: Delete a brewery
   Background:
     Given a user exists with a token of "a1b2c3"
 
-  Scenario: Deleting a brewery owned by the requesting API client
+  Scenario: Deleting a brewery
     Given the following brewery exists:
       | id | user          | name  |
       | 1  | token: a1b2c3 | Abita |
@@ -15,7 +15,7 @@ Feature: Delete a brewery
     Then I should receive a 200 response
     And the "a1b2c3" API user should have 0 breweries
 
-  Scenario: Attempting to delete a brewery not owned by the requesting API client
+  Scenario: Deleting a brewery, not owned by the requesting API client
     Given the following brewery exists:
       | id | user          | name  |
       | 1  | token: d4e5f6 | Abita |
@@ -23,7 +23,7 @@ Feature: Delete a brewery
     Then I should receive a 401 response
     And the "d4e5f6" API user should have 1 breweries
 
-  Scenario: Attempting to delete a brewery not owned by an API client
+  Scenario: Deleting a brewery, not owned by an API client
     Given the following brewery exists:
       | id | user | name  |
       | 1  |      | Abita |
@@ -33,7 +33,7 @@ Feature: Delete a brewery
       | id | name  |
       | 1  | Abita |
 
-  Scenario: Attempting to delete a brewery with beers
+  Scenario: Deleting a brewery, with beers
     Given the following brewery exists:
       | id | user          | name  |
       | 1  | token: a1b2c3 | Abita |

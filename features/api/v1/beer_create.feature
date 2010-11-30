@@ -25,7 +25,7 @@ Feature: Create a beer
     |                 |        | 401    | json   |
     | { "beer" : {} } |        | 401    | xml    |
 
-  Scenario: Creating a beer successfully
+  Scenario: Creating a beer
     Given the following brewery exists:
       | user          | name  |
       | token: a1b2c3 | Abita |
@@ -37,7 +37,7 @@ Feature: Create a beer
       | user          | brewery     | name  | description | abv |
       | token: a1b2c3 | name: Abita | Amber | Common.     | 4.5 |
 
-  Scenario: Attempting to create a beer with a brewery not owned by the requesting API client
+  Scenario: Creating a beer, with a brewery not owned by the requesting API client
     Given a brewery exists with a name of "Southern Tier"
     When I create the following beer via the API for the "Southern Tier" brewery using the "a1b2c3" token:
       | name     | description | abv |
