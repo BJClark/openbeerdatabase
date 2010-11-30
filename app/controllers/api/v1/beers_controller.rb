@@ -3,6 +3,14 @@ class Api::V1::BeersController < Api::V1::BaseController
     @beers = Beer.paginate(params)
   end
 
+  def show
+    @beer = Beer.find(params[:id])
+
+    if params[:token].present?
+      head(:unauthorized) unless @beer.user == current_user
+    end
+  end
+
   def create
     beer = Beer.new(params[:beer])
     beer.user    = current_user
