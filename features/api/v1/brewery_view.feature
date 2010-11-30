@@ -26,6 +26,10 @@ Feature: View a brewery
     When I send an API GET request to /v1/breweries/1.json?token=d4e5f6
     Then I should receive a 401 response
 
+  Scenario: Viewing a brewery, that does not exist
+    When I send an API GET request to /v1/breweries/1.json
+    Then I should receive a 404 response
+
   Scenario: Viewing a brewery, in an invalid format
     Given the following brewery exists:
       | id |
