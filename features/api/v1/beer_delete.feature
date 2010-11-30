@@ -32,3 +32,7 @@ Feature: Delete a beer
     And the following beer should exist:
       | id | name     |
       | 1  | Pumpking |
+
+  Scenario: Deleting a beer, that does not exist
+    When I send an API DELETE request to /v1/beers/1.json
+    Then I should receive a 404 response
