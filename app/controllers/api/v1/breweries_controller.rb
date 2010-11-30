@@ -13,4 +13,20 @@ class Api::V1::BreweriesController < Api::V1::BaseController
       head :bad_request
     end
   end
+
+  def destroy
+    brewery = Brewery.find(params[:id])
+
+    if brewery.user == current_user
+      if brewery.beers.count == 0
+        brewery.destroy
+
+        head :ok
+      else
+        head :bad_request
+      end
+    else
+      head :unauthorized
+    end
+  end
 end
