@@ -20,6 +20,22 @@ Feature: View a brewery
         }
       """
 
+  Scenario: Viewing a brewery, with JSONP
+    Given the following brewery exists:
+      | id | name  | url              | created_at | updated_at |
+      | 1  | Abita | http://abita.com | 2010-01-01 | 2010-02-02 |
+    When I send an API GET request to /v1/breweries/1.json?callback=onBrewery
+    Then I should receive a 200 response
+    And I should see the following JSONP response with an "onBrewery" callback
+      """
+        { "id"         : 1,
+          "name"       : "Abita",
+          "url"        : "http://abita.com",
+          "created_at" : "2010-01-01T00:00:00Z",
+          "updated_at" : "2010-02-02T00:00:00Z"
+        }
+      """
+
   Scenario: Viewing a brewery, not owned by the requesting API client
     Given the following brewery exists:
       | id | user          |

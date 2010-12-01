@@ -10,3 +10,7 @@ module OpenBeerDatabase
     config.time_zone = 'UTC'
   end
 end
+
+Dir[Rails.root.join('lib/**/*.rb')].each do |file|
+  require file
+end

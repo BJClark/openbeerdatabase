@@ -36,6 +36,31 @@ Feature: List breweries
         }
       """
 
+  Scenario: Listing breweries, with JSONP
+    When I send an API GET request to /v1/breweries.json?callback=onBreweries
+    Then I should receive a 200 response
+    And I should see the following JSONP response with an "onBreweries" callback
+      """
+        { "page"      : 1,
+          "pages"     : 1,
+          "total"     : 2,
+          "breweries" : [
+            { "id"         : 1,
+              "name"       : "Southern Tier",
+              "url"        : "http://southerntierbrewing.com",
+              "created_at" : "2010-01-01T00:00:00Z",
+              "updated_at" : "2010-02-02T00:00:00Z"
+            },
+            { "id"         : 3,
+              "name"       : "Russian River",
+              "url"        : "http://russianriverbrewing.com",
+              "created_at" : "2010-05-05T00:00:00Z",
+              "updated_at" : "2010-06-06T00:00:00Z"
+            }
+          ]
+        }
+      """
+
   Scenario: Listing breweries, with pagination
     When I send an API GET request to /v1/breweries.json?page=2&per_page=1
     Then I should receive a 200 response

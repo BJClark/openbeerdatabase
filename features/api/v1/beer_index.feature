@@ -51,6 +51,41 @@ Feature: List beers
         }
       """
 
+  Scenario: Listing beers, with JSONP
+    When I send an API GET request to /v1/beers.json?callback=onBeersLoad
+    Then I should receive a 200 response
+    And I should see the following JSONP response with an "onBeersLoad" callback
+      """
+        { "page"  : 1,
+          "pages" : 1,
+          "total" : 2,
+          "beers" : [
+            { "id"          : 1,
+              "name"        : "Pumpking",
+              "description" : "Seasonal.",
+              "abv"         : 8.8,
+              "created_at"  : "2010-01-01T00:00:00Z",
+              "updated_at"  : "2010-02-02T00:00:00Z",
+              "brewery"     : {
+                "id"   : 1,
+                "name" : "Southern Tier"
+              }
+            },
+            { "id"          : 3,
+              "name"        : "Strawberry Harvest",
+              "description" : "Southern.",
+              "abv"         : 4.2,
+              "created_at"  : "2010-05-05T00:00:00Z",
+              "updated_at"  : "2010-06-06T00:00:00Z",
+              "brewery"     : {
+                "id"   : 2,
+                "name" : "Abita"
+              }
+            }
+          ]
+        }
+      """
+
   Scenario: Listing beers, with pagination
     When I send an API GET request to /v1/beers.json?page=2&per_page=1
     Then I should receive a 200 response

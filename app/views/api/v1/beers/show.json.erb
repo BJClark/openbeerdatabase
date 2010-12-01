@@ -9,5 +9,5 @@
       :id   => @beer.brewery.id,
       :name => @beer.brewery.name
     }
-  }.to_json
-%>
+  }.to_jsonp(params[:callback])
+-%>

@@ -10,5 +10,5 @@
         :updated_at => brewery.updated_at
       }
     }
-  }.to_json
-%>
+  }.to_jsonp(params[:callback])
+-%>

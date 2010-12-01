@@ -23,6 +23,13 @@ Then /^I should see the following JSON response$/ do |string|
   JSON.parse(response.body).should == JSON.parse(string)
 end
 
+Then /^I should see the following JSONP response with an? "([^"]*)" callback$/ do |callback, string|
+  object = response.body.match(/^#{callback}\((.+)\)\;$/)
+  object.should_not be_nil
+
+  JSON.parse(object[1]).should == JSON.parse(string)
+end
+
 
 # Beer
 
