@@ -20,9 +20,7 @@ Then /^I should receive a (\d+) response$/ do |status|
 end
 
 Then /^I should see the following JSON response$/ do |string|
-  expected = JSON.parse(string)
-  actual   = JSON.parse(response.body)
-  actual.should == expected
+  JSON.parse(response.body).should == JSON.parse(string)
 end
 
 
