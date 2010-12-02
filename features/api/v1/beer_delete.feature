@@ -34,5 +34,5 @@ Feature: Delete a beer
       | 1  | Pumpking |
 
   Scenario: Deleting a beer, that does not exist
-    When I send an API DELETE request to /v1/beers/1.json
+    When I send an API DELETE request to /v1/beers/1.json?token=a1b2c3
     Then I should receive a 404 response
