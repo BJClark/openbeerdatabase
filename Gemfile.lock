@@ -78,7 +78,7 @@ GEM
     mocha (0.9.8)
       rake
     nokogiri (1.4.4)
-    pg (0.9.0)
+    pg (0.10.0)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -107,9 +107,11 @@ GEM
     rspec-expectations (2.2.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.2.0)
-    rspec-rails (2.2.0)
-      rails (~> 3.0.0)
-      rspec (~> 2.2)
+    rspec-rails (2.2.1)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      railties (~> 3.0)
+      rspec (~> 2.2.0)
     rubyzip (0.9.4)
     selenium-webdriver (0.1.1)
       childprocess (= 0.1.4)
@@ -130,13 +132,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bourne
-  capybara
-  cucumber-rails
-  database_cleaner
-  factory_girl_rails
-  pg
+  bourne (= 1.0)
+  capybara (= 0.4.0)
+  cucumber-rails (= 0.3.2)
+  database_cleaner (= 0.6.0)
+  factory_girl_rails (= 1.0)
+  pg (= 0.10.0)
   rails (= 3.0.3)
-  rspec-rails
-  shoulda
+  rspec-rails (= 2.2.1)
+  shoulda (= 2.11.3)
   will_paginate (~> 3.0.pre2)

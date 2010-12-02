@@ -1,19 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'pg'
-gem 'rails', '3.0.3'
+gem 'pg',            '0.10.0'
+gem 'rails',         '3.0.3'
 gem 'will_paginate', '~> 3.0.pre2'
 
 group :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.2.1'
 end
 
 group :test do
-  gem 'bourne'
-  gem 'shoulda'
-  gem 'capybara'
-  gem 'rspec-rails'
-  gem 'cucumber-rails'
-  gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'bourne',             '1.0'
+  gem 'shoulda',            '2.11.3'
+  gem 'capybara',           '0.4.0'
+  gem 'rspec-rails',        '2.2.1'
+  gem 'cucumber-rails',     '0.3.2'
+  gem 'database_cleaner',   '0.6.0'
+  gem 'factory_girl_rails', '1.0'
 end
