@@ -66,6 +66,9 @@ GEM
     gherkin (2.2.9)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
+    hoptoad_notifier (2.3.12)
+      activesupport
+      builder
     i18n (0.5.0)
     json (1.4.6)
     json_pure (1.4.6)
@@ -137,6 +140,7 @@ DEPENDENCIES
   cucumber-rails (= 0.3.2)
   database_cleaner (= 0.6.0)
   factory_girl_rails (= 1.0)
+  hoptoad_notifier (= 2.3.12)
   pg (= 0.10.0)
   rails (= 3.0.3)
   rspec-rails (= 2.2.1)

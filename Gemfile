@@ -1,8 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'pg',            '0.10.0'
-gem 'rails',         '3.0.3'
-gem 'will_paginate', '~> 3.0.pre2'
+gem 'pg',               '0.10.0'
+gem 'rails',            '3.0.3'
+gem 'will_paginate',    '~> 3.0.pre2'
+gem 'hoptoad_notifier', '2.3.12'
 
 group :development do
   gem 'rspec-rails', '2.2.1'
