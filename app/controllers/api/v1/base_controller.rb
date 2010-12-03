@@ -1,7 +1,6 @@
 class Api::V1::BaseController < ApplicationController
-  before_filter :authenticate,                   :only   => [:create, :destroy]
-  before_filter :validate_format,                :except => [:destroy]
-  after_filter  :correct_content_type_for_jsonp, :only   => [:index, :show], :if => :callback_provided?
+  before_filter :authenticate,    :only   => [:create, :destroy]
+  before_filter :validate_format, :except => [:destroy]
 
   caches_action :index, :show, :expires_in => 15.minutes, :if => :callback_provided?
 
@@ -13,10 +12,6 @@ class Api::V1::BaseController < ApplicationController
 
   def callback_provided?
     params[:callback].present?
-  end
-
-  def correct_content_type_for_jsonp
-    self.content_type = Mime::JS
   end
 
   def current_user

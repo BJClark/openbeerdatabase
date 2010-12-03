@@ -26,7 +26,7 @@ end
 Then /^I should see the following JSONP response with an? "([^"]*)" callback:$/ do |callback, string|
   response.content_type.should == Mime::JS
 
-  object = response.body.match(/^#{callback}\((.+)\)\;$/)
+  object = response.body.match(/^#{callback}\((.+)\)$/)
   object.should_not be_nil
 
   JSON.parse(object[1]).should == JSON.parse(string)
