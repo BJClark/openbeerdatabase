@@ -20,7 +20,8 @@ class Api::V1::BreweriesController < Api::V1::BaseController
     if brewery.save
       head :created
     else
-      head :bad_request
+      render :json   => { :errors => brewery.errors },
+             :status => :bad_request
     end
   end
 

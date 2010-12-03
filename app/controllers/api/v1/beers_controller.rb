@@ -21,7 +21,8 @@ class Api::V1::BeersController < Api::V1::BaseController
     if beer.save
       head :created
     else
-      head :bad_request
+      render :json   => { :errors => beer.errors },
+             :status => :bad_request
     end
   end
 

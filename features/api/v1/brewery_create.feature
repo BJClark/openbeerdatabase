@@ -34,3 +34,17 @@ Feature: Create a brewery
     Then the following brewery should exist:
       | user          | name     |
       | token: a1b2c3 | Pumpking |
+
+  Scenario: Creating a brewery, with validation errors
+    When I create the following brewery via the API using the "a1b2c3" token:
+      | name | url |
+      |      | WTF |
+    Then I should receive a 400 response
+    And I should see the following JSON response:
+      """
+        { "errors" : {
+            "name" : "can't be blank",
+            "url"  : "is invalid"
+          }
+        }
+      """
