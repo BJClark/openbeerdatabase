@@ -33,8 +33,18 @@ class Beer < ActiveRecord::Base
     { :page       => options[:page]     || 1,
       :per_page   => options[:per_page] || 50,
       :conditions => conditions_for_pagination(options),
-      :order      => 'id ASC',
+      :order      => order_for_pagination(options[:column], options[:order]),
       :include    => :brewery
     }
+  end
+
+  def self.order_for_pagination(column, order)
+    order.to_s.upcase!
+    order = 'ASC' unless %w(ASC DESC).include?(order)
+
+    column.to_s.downcase!
+    column = 'id' unless %w(id created_at updated_at).include?(column)
+
+    "#{column} #{order}"
   end
 end

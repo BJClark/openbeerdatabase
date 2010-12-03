@@ -111,6 +111,31 @@ Feature: List breweries
         }
       """
 
+  Scenario: Listing breweries, with a custom sort column and order
+    When I send an API GET request to /v1/breweries.json?order=desc&column=updated_at
+    Then I should receive a 200 response
+    And I should see the following JSON response:
+      """
+        { "page"      : 1,
+          "pages"     : 1,
+          "total"     : 2,
+          "breweries" : [
+            { "id"         : 3,
+              "name"       : "Russian River",
+              "url"        : "http://russianriverbrewing.com",
+              "created_at" : "2010-05-05T00:00:00Z",
+              "updated_at" : "2010-06-06T00:00:00Z"
+            },
+            { "id"         : 1,
+              "name"       : "Southern Tier",
+              "url"        : "http://southerntierbrewing.com",
+              "created_at" : "2010-01-01T00:00:00Z",
+              "updated_at" : "2010-02-02T00:00:00Z"
+            }
+          ]
+        }
+      """
+
   Scenario: Listing breweries, in an invalid format
     When I send an API GET request to /v1/breweries.xml
     Then I should receive a 406 response

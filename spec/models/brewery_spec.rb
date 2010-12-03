@@ -86,12 +86,58 @@ describe Brewery, '.paginate' do
                                                                  :conditions => ['user_id IS NULL OR user_id = ?', user.id],
                                                                  :order      => 'id ASC')
   end
+end
 
-  it 'does not allow overriding order' do
-    Brewery.paginate(:order => 'name DESC')
+describe Brewery, '.paginate with custom sort column and order' do
+  before do
+    Brewery.stubs(:paginate_without_options)
+  end
+
+  it 'allows customization of both options at the same time' do
+    Brewery.paginate(:column => 'updated_at', :order => 'DESC')
     Brewery.should have_received(:paginate_without_options).with(:page       => 1,
                                                                  :per_page   => 50,
                                                                  :conditions => 'user_id IS NULL',
-                                                                 :order      => 'id ASC')
+                                                                 :order      => "updated_at DESC")
+  end
+
+  %w(id created_at updated_at).each do |column|
+    it "allows #{column} as a custom sort column" do
+      Brewery.paginate(:column => column)
+      Brewery.should have_received(:paginate_without_options).with(:page       => 1,
+                                                                   :per_page   => 50,
+                                                                   :conditions => 'user_id IS NULL',
+                                                                   :order      => "#{column} ASC")
+    end
+  end
+
+  %w(name).each do |column|
+    it "does not allow #{column} as a custom sort column" do
+      Brewery.paginate(:column => column)
+      Brewery.should have_received(:paginate_without_options).with(:page       => 1,
+                                                                   :per_page   => 50,
+                                                                   :conditions => 'user_id IS NULL',
+                                                                   :order      => "id ASC")
+    end
+  end
+
+  %w(asc desc).each do |order|
+    it "allows #{order} as a custom sort order" do
+      Brewery.paginate(:order => order)
+      Brewery.should have_received(:paginate_without_options).with(:page       => 1,
+                                                                   :per_page   => 50,
+                                                                   :conditions => 'user_id IS NULL',
+                                                                   :order      => "id #{order}")
+    end
+  end
+
+  %w(brewery `breweries`.`id`).each do |order|
+    it "does not allow #{order} as a custom sort order" do
+      Brewery.paginate(:order => order)
+      Brewery.should have_received(:paginate_without_options).with(:page       => 1,
+                                                                   :per_page   => 50,
+                                                                   :conditions => 'user_id IS NULL',
+                                                                   :order      => "id ASC")
+    end
   end
 end
