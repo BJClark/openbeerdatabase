@@ -10,7 +10,7 @@ Feature: View a brewery
       | 1  | Abita | http://abita.com | 2010-01-01 | 2010-02-02 |
     When I send an API GET request to /v1/breweries/1.json
     Then I should receive a 200 response
-    And I should see the following JSON response
+    And I should see the following JSON response:
       """
         { "id"         : 1,
           "name"       : "Abita",
@@ -26,7 +26,7 @@ Feature: View a brewery
       | 1  | Abita | http://abita.com | 2010-01-01 | 2010-02-02 |
     When I send an API GET request to /v1/breweries/1.json?callback=onBrewery
     Then I should receive a 200 response
-    And I should see the following JSONP response with an "onBrewery" callback
+    And I should see the following JSONP response with an "onBrewery" callback:
       """
         { "id"         : 1,
           "name"       : "Abita",

@@ -14,7 +14,7 @@ Feature: List breweries
   Scenario: Listing breweries
     When I send an API GET request to /v1/breweries.json
     Then I should receive a 200 response
-    And I should see the following JSON response
+    And I should see the following JSON response:
       """
         { "page"      : 1,
           "pages"     : 1,
@@ -39,7 +39,7 @@ Feature: List breweries
   Scenario: Listing breweries, with JSONP
     When I send an API GET request to /v1/breweries.json?callback=onBreweries
     Then I should receive a 200 response
-    And I should see the following JSONP response with an "onBreweries" callback
+    And I should see the following JSONP response with an "onBreweries" callback:
       """
         { "page"      : 1,
           "pages"     : 1,
@@ -64,7 +64,7 @@ Feature: List breweries
   Scenario: Listing breweries, with pagination
     When I send an API GET request to /v1/breweries.json?page=2&per_page=1
     Then I should receive a 200 response
-    And I should see the following JSON response
+    And I should see the following JSON response:
       """
         { "page"      : 2,
           "pages"     : 2,
@@ -83,7 +83,7 @@ Feature: List breweries
   Scenario: Listing breweries, with entries from an API client
     When I send an API GET request to /v1/breweries.json?token=a1b2c3
     Then I should receive a 200 response
-    And I should see the following JSON response
+    And I should see the following JSON response:
       """
         { "page"      : 1,
           "pages"     : 1,
