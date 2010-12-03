@@ -24,6 +24,8 @@ Then /^I should see the following JSON response:$/ do |string|
 end
 
 Then /^I should see the following JSONP response with an? "([^"]*)" callback:$/ do |callback, string|
+  response.content_type.should == Mime::JS
+
   object = response.body.match(/^#{callback}\((.+)\)\;$/)
   object.should_not be_nil
 
