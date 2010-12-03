@@ -1,4 +1,5 @@
 OpenBeerDatabase::Application.configure do
+  config.cache_store         = :dalli_store
   config.cache_classes       = true
   config.i18n.fallbacks      = true
   config.serve_static_assets = false
