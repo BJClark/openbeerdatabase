@@ -9,7 +9,7 @@ class Brewery < ActiveRecord::Base
                       :allow_nil => true
                     }
 
-  attr_accessible :name
+  attr_accessible :name, :url
 
   def self.paginate_with_options(options = {})
     paginate_without_options(options_for_pagination(options))

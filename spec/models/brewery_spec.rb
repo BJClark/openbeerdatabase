@@ -9,6 +9,7 @@ describe Brewery do
   it { should allow_mass_assignment_of(:name) }
 
   it { should ensure_length_of(:url).is_at_most(255) }
+  it { should allow_mass_assignment_of(:url) }
 end
 
 describe Brewery, 'url' do
