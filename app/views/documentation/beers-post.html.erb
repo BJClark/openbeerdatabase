@@ -1,0 +1,97 @@
+<header>
+  <h1>POST /beers</h1>
+</header>
+
+<p>Create a new beer.</p>
+
+<h2>Parameters</h2>
+
+<p>All parameters are required.</p>
+
+<table class="parameters">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>beer</td>
+      <td>hash</td>
+      <td>Attributes of the new beer.</td>
+    </tr>
+    <tr class="nested">
+      <td>name</td>
+      <td>string</td>
+      <td>The name of the beer.</td>
+    </tr>
+    <tr class="nested">
+      <td>description</td>
+      <td>string</td>
+      <td>The description of the beer.</td>
+    </tr>
+    <tr class="nested">
+      <td>abv</td>
+      <td>float</td>
+      <td>The alcohol by volume of the beer.</td>
+    </tr>
+    <tr>
+      <td>brewery_id</td>
+      <td>integer</td>
+      <td>The ID of the brewery to create a beer for.</td>
+    </tr>
+    <tr>
+      <td>token</td>
+      <td>string</td>
+      <td>Token of the API user created the beer.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Errors</h2>
+
+<table class="errors">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>400</td>
+      <td>Invalid record. Responds with <a href="/documentation/errors">a JSON object containing errors</a>.</td>
+    </tr>
+    <tr>
+      <td>401</td>
+      <td>Unauthorized.</td>
+    </tr>
+    <tr>
+      <td>406</td>
+      <td>Invalid format.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Example</h2>
+
+<div class="highlight"><pre><code class="js">POST /v1/beers.json HTTP/1.1
+Host: api.openbeerdatabase.com
+Content-Type: application/json; charset=utf-8
+Content-Length: <span class="variable">length</span>
+
+<span class="p">{</span> <span class="s2">&#34;brewery_id&#34;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&#34;beer&#34;</span>       <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;name&#34;</span>        <span class="o">:</span> <span class="s2">&#34;Strawberry Harvest&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;description&#34;</span> <span class="o">:</span> <span class="s2">&#34;Strawberry Harvest Lager is a wheat beer ...&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;abv&#34;</span>         <span class="o">:</span> <span class="mi">4.2</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="highlight"><pre><code>HTTP/1.1 201 Created
+Location: http://api.openbeerdatabase.com/v1/beers/<span class="variable">id</span>.json</code></pre>
+</div>

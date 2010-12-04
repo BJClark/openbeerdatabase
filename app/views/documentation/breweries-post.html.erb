@@ -1,0 +1,79 @@
+<header>
+  <h1>POST /breweries</h1>
+</header>
+
+<p>Create a new brewery.</p>
+
+<h2>Parameters</h2>
+
+<p>All parameters are required.</p>
+
+<table class="parameters">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>brewery</td>
+      <td>hash</td>
+      <td>Attributes of the new brewery.</td>
+    </tr>
+    <tr class="nested">
+      <td>name</td>
+      <td>string</td>
+      <td>The name of the brewery.</td>
+    </tr>
+    <tr>
+      <td>token</td>
+      <td>string</td>
+      <td>Token of the API user created the brewery.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Errors</h2>
+
+<table class="errors">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>400</td>
+      <td>Invalid record. Responds with <a href="/documentation/errors">a JSON object containing errors</a>.</td>
+    </tr>
+    <tr>
+      <td>401</td>
+      <td>Unauthorized.</td>
+    </tr>
+    <tr>
+      <td>406</td>
+      <td>Invalid format.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Example</h2>
+
+<div class="highlight"><pre><code class="js">POST /v1/breweries.json HTTP/1.1
+Host: api.openbeerdatabase.com
+Content-Type: application/json; charset=utf-8
+Content-Length: <span class="variable">length</span>
+
+<span class="p">{</span> <span class="s2">&#34;brewery&#34;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;name&#34;</span> <span class="o">:</span> <span class="s2">&#34;Strawberry Harvest&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="highlight"><pre><code>HTTP/1.1 201 Created
+Location: http://api.openbeerdatabase.com/v1/breweries/<span class="variable">id</span>.json</code></pre>
+</div>

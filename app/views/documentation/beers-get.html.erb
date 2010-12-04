@@ -1,0 +1,100 @@
+<header>
+  <h1>GET /beers</h1>
+</header>
+
+<p>Retrieve the details of all beers, and narrow down the results with specific arugments.</p>
+
+<h2>Parameters</h2>
+
+<p>All parameters are optional.</p>
+
+<table class="parameters">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>callback</td>
+      <td>string</td>
+      <td>Name of the callback function for JSONP.</td>
+    </tr>
+    <tr>
+      <td>column</td>
+      <td>string</td>
+      <td>The column to sort the results by. <span>Defaults to &#8220;id&#8221;. Valid options are &#8220;id&#8221;, &#8220;created_at&#8221;, and &#8220;updated_at&#8221;.</td>
+    </tr>
+    <tr>
+      <td>order</td>
+      <td>string</td>
+      <td>The direction to sort the results. <span>Defaults to &#8220;ASC&#8221;. Valid options are &#8220;ASC&#8221; and &#8220;DESC&#8221;.</td>
+    </tr>
+    <tr>
+      <td>page</td>
+      <td>integer</td>
+      <td>The page of results to retrieve. <span>Defaults to &#8220;1&#8221;.</span></td>
+    </tr>
+    <tr>
+      <td>per_page</td>
+      <td>integer</td>
+      <td>The number of results per page. <span>Defaults to &#8220;50&#8221;.</span></td>
+    </tr>
+    <tr>
+      <td>token</td>
+      <td>string</td>
+      <td>Include beers created by the API user with the specified token in the results.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Errors</h2>
+
+<table class="errors">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>406</td>
+      <td>Invalid format.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Example</h2>
+
+<div class="highlight"><pre><code>GET /v1/beers.json HTTP/1.1
+Host: api.openbeerdatabase.com
+Content-Type: application/json; charset=utf-8</code></pre>
+</div>
+
+<div class="highlight"><pre><code class="js">HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Content-Length: <span class="variable">length</span>
+
+<span class="p">{</span> <span class="s2">&#34;page&#34;</span>  <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&#34;pages&#34;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&#34;total&#34;</span> <span class="o">:</span> <span class="mi">55</span><span class="p">,</span>
+  <span class="s2">&#34;beers&#34;</span> <span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="s2">&#34;id&#34;</span>          <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&#34;name&#34;</span>        <span class="o">:</span> <span class="s2">&#34;Strawberry Harvest&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;description&#34;</span> <span class="o">:</span> <span class="s2">&#34;Strawberry Harvest Lager is a wheat beer ...&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;abv&#34;</span>         <span class="o">:</span> <span class="mi">4.2</span><span class="p">,</span>
+      <span class="s2">&#34;created_at&#34;</span>  <span class="o">:</span> <span class="s2">&#34;2010-01-01T00:00:00Z&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;updated_at&#34;</span>  <span class="o">:</span> <span class="s2">&#34;2010-02-02T12:30:00Z&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;brewery&#34;</span>     <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&#34;id&#34;</span>   <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&#34;name&#34;</span> <span class="o">:</span> <span class="s2">&#34;Abita&#34;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+</div>

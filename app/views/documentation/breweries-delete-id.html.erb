@@ -1,0 +1,62 @@
+<header>
+  <h1>DELETE /breweries/:id</h1>
+</header>
+
+<p>Delete a brewery from the database. The brewery may only be deleted if it has zero beers.</p>
+
+<h2>Parameters</h2>
+
+<p>All parameters are required.</p>
+
+<table class="parameters">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>token</td>
+      <td>string</td>
+      <td>The API token of the user who created this brewery.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Errors</h2>
+
+<table class="errors">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>400</td>
+      <td>Does not have zero beers.</td>
+    </tr>
+    <tr>
+      <td>401</td>
+      <td>Unauthorized.</td>
+    </tr>
+    <tr>
+      <td>404</td>
+      <td>Not found.</td>
+    </tr>
+  </tbody>
+</table>
+
+  </tbody>
+</table>
+
+<h2>Example</h2>
+
+<div class="highlight"><pre><code>DELETE /v1/breweries/<span class="variable">id</span>.json HTTP/1.1
+Host: api.openbeerdatabase.com</code></pre>
+</div>
+
+<div class="highlight"><pre><code class="js">HTTP/1.1 200 OK</code></pre></div>

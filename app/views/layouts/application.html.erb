@@ -5,11 +5,84 @@
 
   <title>Open Beer Database</title>
 
-  <%= stylesheet_link_tag :all %>
+  <link rel="stylesheet" type="text/css" href="<%= compute_public_path('screen', 'stylesheets', 'css') %>" media="screen">
+
+  <% unless %w(development test).include?(Rails.env) -%>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8648594-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  <% end -%>
 </head>
 <body>
 
-<%= yield %>
+<header>
+  <div class="container">
+    <h1><a href="/"><span>O</span>p<span>e</span>n <span>B</span>e<span>e</span>r <span>D</span><span>a</span><span>t</span><span>a</span><span>b</span><span>a</span>se</a></h1>
+    <h2>A free, public database and API for beer information.</h2>
+
+    <p id="request-token"><a href="/users/new">Request an API token.</a></p>
+  </div>
+</header>
+
+<section class="container">
+  <section>
+    <% flash.each do |key, value| -%>
+      <p class="<%= key %>"><%= value %></p>
+    <% end -%>
+
+    <%= yield %>
+  </section>
+
+  <aside>
+    <header>
+      <h1>Version 1.0</h1>
+    </header>
+
+    <dl>
+      <dt>Beers</dt>
+      <dd>
+        <ul>
+          <li><a href="/documentation/beers-get"><span>GET</span> /beers</a></li>
+          <li><a href="/documentation/beers-get-id"><span>GET</span> /beers/:id</a></li>
+          <li><a href="/documentation/beers-post"><span>POST</span> /beers</a></li>
+          <li><a href="/documentation/beers-delete-id"><span>DELETE</span> /beers/:id</a></li>
+        </ul>
+      </dd>
+      <dt>Breweries</dt>
+      <dd>
+        <ul>
+          <li><a href="/documentation/breweries-get"><span>GET</span> /breweries</a></li>
+          <li><a href="/documentation/breweries-get-id"><span>GET</span> /breweries/:id</a></li>
+          <li><a href="/documentation/breweries-post"><span>POST</span> /breweries</a></li>
+          <li><a href="/documentation/breweries-delete-id"><span>DELETE</span> /breweries/:id</a></li>
+        </ul>
+      </dd>
+    </dl>
+
+    <header>
+      <h1>Examples</h1>
+    </header>
+
+    <ul>
+      <li><a href="/documentation/examples-jsonp">Displaying breweries via JSONP.</a></li>
+    </ul>
+  </aside>
+</section>
+
+<footer class="container">
+  <p>Help with the API <a href="https://github.com/tristandunn/openbeerdatabase">on GitHub</a>.</p>
+  <p>Follow <a href="http://twitter.com/beerdatabase">@beerdatabase</a> on Twitter.</p>
+</footer>
+
+<%= yield :javascript %>
 
 </body>
 </html>
