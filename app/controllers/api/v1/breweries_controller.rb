@@ -9,8 +9,6 @@ class Api::V1::BreweriesController < Api::V1::BaseController
     if params[:token].present?
       head(:unauthorized) unless @brewery.user == current_user
     end
-  rescue ActiveRecord::RecordNotFound
-    head :not_found
   end
 
   def create
@@ -39,7 +37,5 @@ class Api::V1::BreweriesController < Api::V1::BaseController
     else
       head :unauthorized
     end
-  rescue ActiveRecord::RecordNotFound
-    head :not_found
   end
 end

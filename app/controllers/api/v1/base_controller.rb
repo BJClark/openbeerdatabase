@@ -4,6 +4,10 @@ class Api::V1::BaseController < ApplicationController
 
   caches_action :index, :show, :expires_in => 15.minutes, :if => :callback_provided?
 
+  rescue_from ActiveRecord::RecordNotFound do
+    head :not_found
+  end
+
   protected
 
   def authenticate
