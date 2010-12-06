@@ -29,11 +29,11 @@ Feature: Create a brewery
 
   Scenario: Creating a brewery
     When I create the following brewery via the API using the "a1b2c3" token:
-      | name     |
-      | Pumpking |
+      | name          |
+      | Southern Tier |
     Then the following brewery should exist:
-      | user          | name     |
-      | token: a1b2c3 | Pumpking |
+      | user          | name          |
+      | token: a1b2c3 | Southern Tier |
 
   Scenario: Creating a brewery, with validation errors
     When I create the following brewery via the API using the "a1b2c3" token:
