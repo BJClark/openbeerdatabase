@@ -17,7 +17,7 @@ class Api::V1::BeersController < Api::V1::BaseController
     beer.brewery = current_user.breweries.find_by_id(params[:brewery_id])
 
     if beer.save
-      head :created
+      head :created, :location => v1_beer_url(beer, :format => :json)
     else
       render :json   => { :errors => beer.errors },
              :status => :bad_request

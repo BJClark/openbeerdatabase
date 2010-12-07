@@ -31,7 +31,9 @@ Feature: Create a brewery
     When I create the following brewery via the API using the "a1b2c3" token:
       | name          |
       | Southern Tier |
-    Then the following brewery should exist:
+    Then I should receive a 201 response
+    And the Location header should be set to the API brewery page for "Southern Tier"
+    And the following brewery should exist:
       | user          | name          |
       | token: a1b2c3 | Southern Tier |
 

@@ -16,7 +16,7 @@ class Api::V1::BreweriesController < Api::V1::BaseController
     brewery.user = current_user
 
     if brewery.save
-      head :created
+      head :created, :location => v1_brewery_url(brewery, :format => :json)
     else
       render :json   => { :errors => brewery.errors },
              :status => :bad_request

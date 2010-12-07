@@ -33,6 +33,7 @@ Feature: Create a beer
       | name  | description | abv |
       | Amber | Common.     | 4.5 |
     Then I should receive a 201 response
+    And the Location header should be set to the API beer page for "Amber"
     And the following beer should exist:
       | user          | brewery     | name  | description | abv |
       | token: a1b2c3 | name: Abita | Amber | Common.     | 4.5 |

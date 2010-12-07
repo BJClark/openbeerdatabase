@@ -19,6 +19,10 @@ Then /^I should receive a (\d+) response$/ do |status|
   response.status.should == status
 end
 
+Then /^the Location header should be set to (.+)$/ do |page_name|
+  response.headers['Location'].should == path_to(page_name)
+end
+
 Then /^I should see the following JSON response:$/ do |string|
   JSON.parse(response.body).should == JSON.parse(string)
 end
