@@ -6,7 +6,12 @@ OpenBeerDatabase::Application.routes.draw do
     end
   end
 
-  constraints(lambda { |request| request.subdomain.blank? || request.subdomain == 'www' }) do
+  constraints :subdomain => 'www' do
+    root  :to      => redirect { |_, request| "http://#{request.host.sub('www.', '')}" }
+    match '/*path' => redirect { |_, request| "http://#{request.host.sub('www.', '')}#{request.path}" }
+  end
+
+  constraints(lambda { |request| request.subdomain.blank? }) do
     resources :documentation, :only => [:show]
     resources :users,         :only => [:new]
 
