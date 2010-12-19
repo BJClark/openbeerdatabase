@@ -34,8 +34,8 @@
 
 <section class="container">
   <section>
-    <% flash.each do |key, value| -%>
-      <p class="<%= key %>"><%= value %></p>
+    <% if controller_name == 'documentation' -%>
+      <p class="warning">The API is currently a work-in-progress and is subject to change without notice.</p>
     <% end -%>
 
     <%= yield %>
