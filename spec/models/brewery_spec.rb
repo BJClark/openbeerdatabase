@@ -28,7 +28,6 @@ describe Brewery, 'url' do
       'http://example.museum',
       'HttP://example.com',
       'https://example.com',
-      'http://räksmörgås.nu',
       'http://example.com.',
       'http://example.com./foo'
     ].each do |url|
