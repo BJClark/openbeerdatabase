@@ -55,13 +55,13 @@ describe Beer, '.paginate' do
   end
 end
 
-describe Beer, '.paginate with custom sort column and order' do
+describe Beer, '.paginate with custom sort column and direction' do
   before do
     Beer.stubs(:paginate_without_options)
   end
 
   it 'allows customization of both options at the same time' do
-    Beer.paginate(:column => 'updated_at', :order => 'DESC')
+    Beer.paginate(:order => 'updated_at DESC')
     Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                               :per_page   => 50,
                                                               :conditions => 'beers.user_id IS NULL',
@@ -69,9 +69,9 @@ describe Beer, '.paginate with custom sort column and order' do
                                                               :include    => :brewery)
   end
 
-  %w(id created_at updated_at).each do |column|
+  %w(id name created_at updated_at).each do |column|
     it "allows #{column} as a custom sort column" do
-      Beer.paginate(:column => column)
+      Beer.paginate(:order => column)
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => 'beers.user_id IS NULL',
@@ -80,9 +80,9 @@ describe Beer, '.paginate with custom sort column and order' do
     end
   end
 
-  %w(brewery_id name description abv).each do |column|
+  %w(brewery_id user_id description abv).each do |column|
     it "does not allow #{column} as a custom sort column" do
-      Beer.paginate(:column => column)
+      Beer.paginate(:order => column)
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => 'beers.user_id IS NULL',
@@ -92,19 +92,19 @@ describe Beer, '.paginate with custom sort column and order' do
   end
 
   %w(asc desc).each do |order|
-    it "allows #{order} as a custom sort order" do
-      Beer.paginate(:order => order)
+    it "allows #{order} as a custom sort direction" do
+      Beer.paginate(:order => "id #{order}")
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => 'beers.user_id IS NULL',
-                                                                :order      => "id #{order}",
+                                                                :order      => "id #{order.upcase}",
                                                                 :include    => :brewery)
     end
   end
 
   %w(beer `beers`.`brewer_id`).each do |order|
-    it "does not allow #{order} as a custom sort order" do
-      Beer.paginate(:order => order)
+    it "does not allow #{order} as a custom sort direction" do
+      Beer.paginate(:order => "id #{order}")
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => 'beers.user_id IS NULL',

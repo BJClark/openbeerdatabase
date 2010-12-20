@@ -111,8 +111,8 @@ Feature: List breweries
         }
       """
 
-  Scenario: Listing breweries, with a custom sort column and order
-    When I send an API GET request to /v1/breweries.json?order=desc&column=updated_at
+  Scenario: Listing breweries, with custom sorting
+    When I send an API GET request to /v1/breweries.json?order=updated_at%20desc
     Then I should receive a 200 response
     And I should see the following JSON response:
       """
