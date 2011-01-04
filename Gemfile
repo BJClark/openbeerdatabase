@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'pg',               '0.10.0'
 gem 'rails',            '3.0.3'
-gem 'redis-store',      '1.0.0.beta4'
 gem 'rack-contrib',     '1.1.0', :require => 'rack/contrib'
 gem 'will_paginate',    '~> 3.0.pre2'
 gem 'hoptoad_notifier', '2.3.12'
