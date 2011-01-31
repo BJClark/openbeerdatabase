@@ -3,7 +3,7 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      '/'
+      root_url
 
     when /^the API beer page for "([^"]+)"$/
       beer = Beer.find_by_name!($1)
