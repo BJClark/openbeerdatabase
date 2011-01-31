@@ -11,6 +11,7 @@ module NavigationHelpers
     when /^the API brewery page for "([^"]+)"$/
       brewery = Brewery.find_by_name!($1)
       v1_brewery_url(brewery, :format => :json)
+
     else
       begin
         page_name =~ /^the (.*) page$/
