@@ -45,8 +45,8 @@ Feature: Create a brewery
     And I should see the following JSON response:
       """
         { "errors" : {
-            "name" : "can't be blank",
-            "url"  : "is invalid"
+            "name" : ["can't be blank"],
+            "url"  : ["is invalid"]
           }
         }
       """

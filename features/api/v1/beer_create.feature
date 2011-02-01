@@ -49,16 +49,16 @@ Feature: Create a beer
   Scenario: Creating a beer, with validation errors
     Given a brewery exists with a name of "Southern Tier"
     When I create the following beer via the API for the "Southern Tier" brewery using the "a1b2c3" token:
-      | name | abv | description |
-      |      | WTF |             |
+      | name | description |
+      |      |             |
     Then I should receive a 400 response
     And I should see the following JSON response:
       """
         { "errors" : {
-            "brewery_id"  : "can't be blank",
-            "name"        : "can't be blank",
-            "abv"         : "is not a number",
-            "description" : "can't be blank"
+            "abv"         : ["can't be blank", "is not a number"],
+            "brewery_id"  : ["can't be blank"],
+            "description" : ["can't be blank"],
+            "name"        : ["can't be blank"]
           }
         }
       """
