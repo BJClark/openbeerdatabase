@@ -23,9 +23,9 @@ class Beer < ActiveRecord::Base
     user = User.find_by_token(options[:token]) if options[:token].present?
 
     if user.present?
-      ['beers.user_id IS NULL OR beers.user_id = ?', user.id]
+      ["beers.user_id IS NULL OR beers.user_id = ?", user.id]
     else
-      'beers.user_id IS NULL'
+      "beers.user_id IS NULL"
     end
   end
 
@@ -39,13 +39,13 @@ class Beer < ActiveRecord::Base
   end
 
   def self.order_for_pagination(order)
-    column, direction = order.to_s.split(' ', 2)
+    column, direction = order.to_s.split(" ", 2)
 
     column.to_s.downcase!
-    column = 'id' unless %w(id name created_at updated_at).include?(column)
+    column = "id" unless %w(id name created_at updated_at).include?(column)
 
     direction.to_s.upcase!
-    direction = 'ASC' unless %w(ASC DESC).include?(direction)
+    direction = "ASC" unless %w(ASC DESC).include?(direction)
 
     "#{column} #{direction}"
   end

@@ -23,9 +23,9 @@ class Brewery < ActiveRecord::Base
 
   def self.conditions_for_pagination(options)
     if user = User.find_by_token(options[:token])
-      ['user_id IS NULL OR user_id = ?', user.id]
+      ["user_id IS NULL OR user_id = ?", user.id]
     else
-      'user_id IS NULL'
+      "user_id IS NULL"
     end
   end
 
@@ -38,13 +38,13 @@ class Brewery < ActiveRecord::Base
   end
 
   def self.order_for_pagination(order)
-    column, direction = order.to_s.split(' ', 2)
+    column, direction = order.to_s.split(" ", 2)
 
     column.to_s.downcase!
-    column = 'id' unless %w(id name created_at updated_at).include?(column)
+    column = "id" unless %w(id name created_at updated_at).include?(column)
 
     direction.to_s.upcase!
-    direction = 'ASC' unless %w(ASC DESC).include?(direction)
+    direction = "ASC" unless %w(ASC DESC).include?(direction)
 
     "#{column} #{direction}"
   end

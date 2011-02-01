@@ -22,9 +22,9 @@
 <% content_for :javascript do -%>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script>
-$.getJSON('http://api.openbeerdatabase.com/v1/breweries.json?callback=?', function(response) {
+$.getJSON("http://api.openbeerdatabase.com/v1/breweries.json?callback=?", function(response) {
   $(response.breweries).each(function() {
-    $('#example-breweries').append($('<li>', { text : this.name }));
+    $("#example-breweries").append($("<li>", { text : this.name }));
   });
 });
 </script>

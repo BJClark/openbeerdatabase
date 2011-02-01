@@ -5,7 +5,7 @@ When /^I send an API GET request to (.*)$/ do |path|
 end
 
 When /^I send an API POST request to (.*)$/ do |path, body|
-  post "http://api.openbeerdatabase.local#{path}", body, { 'CONTENT_TYPE' => 'application/json' }
+  post "http://api.openbeerdatabase.local#{path}", body, { "CONTENT_TYPE" => "application/json" }
 end
 
 When /^I send an API DELETE request to (.*)$/ do |path|
@@ -20,7 +20,7 @@ Then /^I should receive a (\d+) response$/ do |status|
 end
 
 Then /^the Location header should be set to (.+)$/ do |page_name|
-  response.headers['Location'].should == path_to(page_name)
+  response.headers["Location"].should == path_to(page_name)
 end
 
 Then /^I should see the following JSON response:$/ do |string|

@@ -1,4 +1,4 @@
-require 'factory_girl/step_definitions'
+require "factory_girl/step_definitions"
 
 Factory.factories.values.each do |factory|
   Then /^the following (?:#{factory.human_name}|#{factory.human_name.pluralize}) should exist:$/ do |table|

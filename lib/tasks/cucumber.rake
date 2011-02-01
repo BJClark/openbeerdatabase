@@ -5,29 +5,29 @@
 # files.
 unless ARGV.any? { |argument| argument =~ /^gems/ }
   begin
-    require 'cucumber/rake/task'
+    require "cucumber/rake/task"
 
     namespace :cucumber do
-      Cucumber::Rake::Task.new(:ok, 'Run features that should pass') do |t|
+      Cucumber::Rake::Task.new(:ok, "Run features that should pass") do |t|
         t.fork    = true
-        t.profile = 'default'
+        t.profile = "default"
       end
 
-      Cucumber::Rake::Task.new(:wip, 'Run features that are being worked on') do |t|
+      Cucumber::Rake::Task.new(:wip, "Run features that are being worked on") do |t|
         t.fork    = true
-        t.profile = 'wip'
+        t.profile = "wip"
       end
 
-      desc 'Run all features'
+      desc "Run all features"
       task :all => [:ok, :wip]
     end
 
-    task :cucumber => 'cucumber:ok'
+    task :cucumber => "cucumber:ok"
     task :default  => :cucumber
   rescue LoadError
-    desc 'cucumber rake task not available (cucumber not installed)'
+    desc "cucumber rake task not available (cucumber not installed)"
     task :cucumber do
-      abort 'Cucumber rake task is not available. Be sure to install cucumber as a gem or plugin'
+      abort "Cucumber rake task is not available. Be sure to install cucumber as a gem or plugin"
     end
   end
 end
