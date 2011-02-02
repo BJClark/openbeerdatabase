@@ -12,8 +12,7 @@ class Api::V1::BreweriesController < Api::V1::BaseController
   end
 
   def create
-    brewery = Brewery.new(params[:brewery])
-    brewery.user = current_user
+    brewery = current_user.breweries.build(params[:brewery])
 
     if brewery.save
       head :created, :location => v1_brewery_url(brewery, :format => :json)

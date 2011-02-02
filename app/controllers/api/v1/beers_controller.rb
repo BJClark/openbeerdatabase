@@ -12,8 +12,7 @@ class Api::V1::BeersController < Api::V1::BaseController
   end
 
   def create
-    beer = Beer.new(params[:beer])
-    beer.user    = current_user
+    beer = current_user.beers.build(params[:beer])
     beer.brewery = current_user.breweries.find_by_id(params[:brewery_id])
 
     if beer.save
