@@ -23,13 +23,11 @@ Then /^the Location header should be set to (.+)$/ do |page_name|
   response.headers["Location"].should == path_to(page_name)
 end
 
-Then /^I should see the following JSONP response with an? "([^"]*)" callback:$/ do |callback, string|
-  response.content_type.should == Mime::JS
-
-  object = response.body.match(/^#{callback}\((.+)\)$/)
-  object.should_not be_nil
-
-  JSON.parse(object[1]).should == JSON.parse(string)
+Then /^I should see the following JSONP response with an? "([^"]*)" callback:$/ do |callback, expected_json|
+  require "json"
+  expected = JSON.pretty_generate(JSON.parse(expected_json))
+  actual   = JSON.pretty_generate(JSON.parse(response.body.match(/^#{callback}\((.+)\)$/)[1]))
+  expected.should == actual
 end
 
 
