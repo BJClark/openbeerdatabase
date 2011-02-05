@@ -15,7 +15,7 @@ Feature: View a beer
       | 1  |      | name: Abita | Strawberry Harvest | Southern.   | 4.2 | 2010-01-01 | 2010-02-02 |
     When I send an API GET request to /v1/beers/1.json
     Then I should receive a 200 response
-    And I should see the following JSON response:
+    And I should see JSON:
       """
         { "id"          : 1,
           "name"        : "Strawberry Harvest",

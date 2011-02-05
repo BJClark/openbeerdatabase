@@ -19,7 +19,7 @@ Feature: List beers
   Scenario: Listing beers
     When I send an API GET request to /v1/beers.json
     Then I should receive a 200 response
-    And I should see the following JSON response:
+    And I should see JSON:
       """
         { "page"  : 1,
           "pages" : 1,
@@ -89,7 +89,7 @@ Feature: List beers
   Scenario: Listing beers, with pagination
     When I send an API GET request to /v1/beers.json?page=2&per_page=1
     Then I should receive a 200 response
-    And I should see the following JSON response:
+    And I should see JSON:
       """
         { "page"  : 2,
           "pages" : 2,
@@ -113,7 +113,7 @@ Feature: List beers
   Scenario: Listing beers, with entries from an API client
     When I send an API GET request to /v1/beers.json?token=a1b2c3
     Then I should receive a 200 response
-    And I should see the following JSON response:
+    And I should see JSON:
       """
         { "page"  : 1,
           "pages" : 1,
@@ -159,7 +159,7 @@ Feature: List beers
   Scenario: Listing beers, with custom sorting
     When I send an API GET request to /v1/beers.json?order=updated_at%20desc
     Then I should receive a 200 response
-    And I should see the following JSON response:
+    And I should see JSON:
       """
         { "page"  : 1,
           "pages" : 1,

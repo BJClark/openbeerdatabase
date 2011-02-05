@@ -23,10 +23,6 @@ Then /^the Location header should be set to (.+)$/ do |page_name|
   response.headers["Location"].should == path_to(page_name)
 end
 
-Then /^I should see the following JSON response:$/ do |string|
-  JSON.parse(response.body).should == JSON.parse(string)
-end
-
 Then /^I should see the following JSONP response with an? "([^"]*)" callback:$/ do |callback, string|
   response.content_type.should == Mime::JS
 

@@ -52,7 +52,7 @@ Feature: Create a beer
       | name | description |
       |      |             |
     Then I should receive a 400 response
-    And I should see the following JSON response:
+    And I should see JSON:
       """
         { "errors" : {
             "abv"         : ["can't be blank", "is not a number"],
