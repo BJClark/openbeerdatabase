@@ -14,3 +14,5 @@ module OpenBeerDatabase
     end
   end
 end
+
+require "./lib/custom_pagination"

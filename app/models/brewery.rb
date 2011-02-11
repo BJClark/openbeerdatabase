@@ -1,4 +1,8 @@
 class Brewery < ActiveRecord::Base
+  include CustomPagination
+
+  SORTABLE_COLUMNS = %w(id name created_at updated_at).freeze
+
   has_many   :beers
   belongs_to :user
 
@@ -35,17 +39,5 @@ class Brewery < ActiveRecord::Base
       :conditions => conditions_for_pagination(options),
       :order      => order_for_pagination(options[:order])
     }
-  end
-
-  def self.order_for_pagination(order)
-    column, direction = order.to_s.split(" ", 2)
-
-    column.to_s.downcase!
-    column = "id" unless %w(id name created_at updated_at).include?(column)
-
-    direction.to_s.upcase!
-    direction = "ASC" unless %w(ASC DESC).include?(direction)
-
-    "#{column} #{direction}"
   end
 end
