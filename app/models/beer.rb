@@ -13,14 +13,6 @@ class Beer < ActiveRecord::Base
 
   attr_accessible :name, :description, :abv
 
-  def self.paginate_with_options(options = {})
-    paginate_without_options(options_for_pagination(options))
-  end
-
-  class << self
-    alias_method_chain :paginate, :options
-  end
-
   private
 
   def self.conditions_for_pagination(options)
