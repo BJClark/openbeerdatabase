@@ -32,8 +32,7 @@ describe Beer, ".paginate" do
     Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                               :per_page   => 50,
                                                               :conditions => "beers.user_id IS NULL",
-                                                              :order      => "id ASC",
-                                                              :include    => :brewery)
+                                                              :order      => "id ASC")
   end
 
   it "allows overriding of pagination parameters" do
@@ -41,8 +40,7 @@ describe Beer, ".paginate" do
     Beer.should have_received(:paginate_without_options).with(:page       => 2,
                                                               :per_page   => 10,
                                                               :conditions => "beers.user_id IS NULL",
-                                                              :order      => "id ASC",
-                                                              :include    => :brewery)
+                                                              :order      => "id ASC")
   end
 
   it "includes user specific records when provided with a token" do
@@ -50,8 +48,7 @@ describe Beer, ".paginate" do
     Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                               :per_page   => 50,
                                                               :conditions => ["beers.user_id IS NULL OR beers.user_id = ?", user.id],
-                                                              :order      => "id ASC",
-                                                              :include    => :brewery)
+                                                              :order      => "id ASC")
   end
 end
 
@@ -65,8 +62,7 @@ describe Beer, ".paginate with custom sort column and direction" do
     Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                               :per_page   => 50,
                                                               :conditions => "beers.user_id IS NULL",
-                                                              :order      => "updated_at DESC",
-                                                              :include    => :brewery)
+                                                              :order      => "updated_at DESC")
   end
 
   %w(id name created_at updated_at).each do |column|
@@ -75,8 +71,7 @@ describe Beer, ".paginate with custom sort column and direction" do
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => "beers.user_id IS NULL",
-                                                                :order      => "#{column} ASC",
-                                                                :include    => :brewery)
+                                                                :order      => "#{column} ASC")
     end
   end
 
@@ -86,8 +81,7 @@ describe Beer, ".paginate with custom sort column and direction" do
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => "beers.user_id IS NULL",
-                                                                :order      => "id ASC",
-                                                                :include    => :brewery)
+                                                                :order      => "id ASC")
     end
   end
 
@@ -97,8 +91,7 @@ describe Beer, ".paginate with custom sort column and direction" do
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => "beers.user_id IS NULL",
-                                                                :order      => "id #{order.upcase}",
-                                                                :include    => :brewery)
+                                                                :order      => "id #{order.upcase}")
     end
   end
 
@@ -108,8 +101,7 @@ describe Beer, ".paginate with custom sort column and direction" do
       Beer.should have_received(:paginate_without_options).with(:page       => 1,
                                                                 :per_page   => 50,
                                                                 :conditions => "beers.user_id IS NULL",
-                                                                :order      => "id ASC",
-                                                                :include    => :brewery)
+                                                                :order      => "id ASC")
     end
   end
 end
